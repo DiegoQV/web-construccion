@@ -1,0 +1,153 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleXIn {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes scaleYIn {
+  from {
+    transform: scaleY(0);
+  }
+
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes kenBurns {
+  from {
+    transform: scale(1.06);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: .5;
+  }
+}
+
+@keyframes scrollIndicator {
+  0% {
+    opacity: 0;
+    transform: translateY(-24px);
+  }
+
+  30% {
+    opacity: 1;
+  }
+
+  70% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+
+.page-enter {
+  animation: pageFadeIn var(--duration-slower) var(--ease-out) forwards;
+}
+
+[data-reveal] {
+  opacity: 0;
+}
+
+[data-reveal="fadeInUp"] {
+  opacity: 0;
+  transition: opacity var(--duration-lazy) var(--ease-spring), transform var(--duration-lazy) var(--ease-spring);
+  transform: translateY(30px);
+}
+
+[data-reveal="fadeIn"] {
+  opacity: 0;
+  transition: opacity var(--duration-dramatic) var(--ease-out);
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-reveal-stagger] > * {
+  opacity: 0;
+  transition: opacity var(--duration-lazy) var(--ease-spring), transform var(--duration-lazy) var(--ease-spring);
+  transition-delay: calc(var(--stagger-index, 0) * .1s);
+  transform: translateY(20px);
+}
+
+[data-reveal-stagger].is-visible > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal], [data-reveal="fadeInUp"], [data-reveal="fadeIn"], [data-reveal-stagger] > * {
+    opacity: 1;
+    transition: none;
+    transform: none;
+  }
+}

@@ -1,0 +1,260 @@
+/* =============================================================================
+   NAVBAR
+   Screen Specification: Section 00
+   ============================================================================= */
+
+/* ── Contenedor principal ───────────────────────────────────────────────── */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-navbar);
+  height: 72px;
+  /* Estado transparente — sobre el hero */
+  background-color: transparent;
+  border-bottom: 1px solid transparent;
+  transition:
+    background-color var(--duration-slow) var(--ease-out),
+    border-color var(--duration-slow) var(--ease-out),
+    backdrop-filter var(--duration-slow) var(--ease-out);
+}
+
+/* Estado sólido — al hacer scroll */
+.navbar--scrolled {
+  background-color: var(--color-bg-overlay-light);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border-bottom-color: var(--color-border-subtle);
+}
+
+/* ── Layout interno ─────────────────────────────────────────────────────── */
+
+.navbar__inner {
+  max-width: var(--container-2xl);
+  margin: 0 auto;
+  height: 100%;
+  padding: 0 var(--space-20);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-10);
+}
+
+@media (max-width: 1439px) {
+  .navbar__inner {
+    padding: 0 var(--space-16);
+  }
+}
+
+@media (max-width: 1279px) {
+  .navbar__inner {
+    padding: 0 var(--space-12);
+  }
+}
+
+@media (max-width: 1023px) {
+  .navbar {
+    height: 64px;
+  }
+  .navbar__inner {
+    padding: 0 var(--space-8);
+  }
+}
+
+@media (max-width: 767px) {
+  .navbar {
+    height: 60px;
+  }
+  .navbar__inner {
+    padding: 0 var(--space-5);
+  }
+}
+
+/* ── Logo / Nombre ──────────────────────────────────────────────────────── */
+
+.navbar__logo {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-regular);
+  font-size: 22px;
+  letter-spacing: var(--tracking-display);
+  color: var(--color-text-inverse);
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: color var(--transition-color);
+}
+
+.navbar--scrolled .navbar__logo {
+  color: var(--color-text-primary);
+}
+
+@media (max-width: 767px) {
+  .navbar__logo {
+    font-size: 18px;
+  }
+}
+
+/* ── Navegación desktop ─────────────────────────────────────────────────── */
+
+.navbar__nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-10);
+  flex: 1;
+  justify-content: center;
+}
+
+.navbar__link {
+  position: relative;
+  color: rgba(245, 242, 238, 0.85);
+  text-decoration: none;
+  padding: var(--space-2) 0;
+  transition: color var(--transition-color);
+}
+
+/* Línea hover/activo */
+.navbar__link::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-brand-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.navbar__link:hover {
+  color: var(--color-text-inverse);
+}
+
+.navbar__link:hover::after {
+  transform: scaleX(1);
+}
+
+/* Estado scrolled — texto oscuro */
+.navbar--scrolled .navbar__link {
+  color: var(--color-text-secondary);
+}
+
+.navbar--scrolled .navbar__link:hover {
+  color: var(--color-text-accent);
+}
+
+/* Ocultar nav en tablet/mobile */
+@media (max-width: 1023px) {
+  .navbar__nav {
+    display: none;
+  }
+}
+
+/* ── Acciones ───────────────────────────────────────────────────────────── */
+
+.navbar__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  flex-shrink: 0;
+}
+
+/* Teléfono */
+.navbar__phone {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: rgba(245, 242, 238, 0.75);
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+  transition: color var(--transition-color);
+  white-space: nowrap;
+}
+
+.navbar__phone:hover {
+  color: var(--color-text-inverse);
+}
+
+.navbar--scrolled .navbar__phone {
+  color: var(--color-text-secondary);
+}
+
+.navbar--scrolled .navbar__phone:hover {
+  color: var(--color-text-primary);
+}
+
+/* Ocultar teléfono en tablet/mobile */
+@media (max-width: 1023px) {
+  .navbar__phone {
+    display: none;
+  }
+}
+
+/* CTA compacto */
+.navbar__cta {
+  /* Ocultar en mobile */
+}
+
+/* Variante inverse — sobre hero */
+.navbar__cta--inverse {
+  border-color: rgba(245, 242, 238, 0.7) !important;
+  color: var(--color-text-inverse) !important;
+}
+
+.navbar__cta--inverse:hover {
+  background-color: var(--color-text-inverse) !important;
+  color: var(--color-brand-primary) !important;
+}
+
+@media (max-width: 1023px) {
+  .navbar__cta {
+    display: none;
+  }
+}
+
+/* ── Hamburger ──────────────────────────────────────────────────────────── */
+
+.navbar__hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--space-2);
+}
+
+.hamburger__line {
+  display: block;
+  height: 1.5px;
+  background-color: var(--color-text-inverse);
+  border-radius: 1px;
+  transition:
+    width var(--duration-base) var(--ease-spring),
+    background-color var(--transition-color);
+}
+
+/* Las tres líneas con anchos distintos — detalle editorial */
+.hamburger__line:nth-child(1) { width: 24px; }
+.hamburger__line:nth-child(2) { width: 20px; }
+.hamburger__line:nth-child(3) { width: 16px; }
+
+.navbar__hamburger:hover .hamburger__line {
+  width: 24px !important;
+}
+
+.navbar--scrolled .hamburger__line {
+  background-color: var(--color-text-primary);
+}
+
+@media (max-width: 1023px) {
+  .navbar__hamburger {
+    display: flex;
+  }
+}

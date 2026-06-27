@@ -1,0 +1,368 @@
+/* =============================================================================
+   HERO
+   Screen Specification: Sección 01
+   Fotografía: casa-nocturna.png
+   ============================================================================= */
+
+/* ── Contenedor ─────────────────────────────────────────────────────────── */
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 700px;
+  max-height: 1000px;
+  overflow: hidden;
+  background-color: var(--color-bg-inverse); /* placeholder hasta que cargue la foto */
+}
+
+@media (max-width: 767px) {
+  .hero {
+    height: 50vh;
+    height: 50svh;
+    min-height: 460px;
+    max-height: 560px;
+  }
+
+  .hero::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 3;
+    height: 28px;
+    background: linear-gradient(180deg, transparent, var(--color-bg-base));
+    pointer-events: none;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hero {
+    height: 90vh;
+    min-height: 600px;
+  }
+}
+
+/* ── Fotografía ─────────────────────────────────────────────────────────── */
+
+.hero__media {
+  position: absolute;
+  inset: -10% 0; /* espacio extra para el parallax */
+  z-index: 0;
+  will-change: transform;
+}
+
+.hero__media--parallax {
+  /* el transform se aplica via inline style */
+}
+
+@media (max-width: 767px) {
+  .hero__media {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .hero__media--parallax {
+    transform: none !important;
+  }
+}
+
+.hero__image {
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 600ms var(--ease-out);
+}
+
+.hero__image--loaded {
+  opacity: 1;
+}
+
+@media (max-width: 767px) {
+  .hero__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 30% 42% !important;
+  }
+
+  .hero__image--kenburns {
+    transform-origin: 30% 42%;
+  }
+}
+
+/* Ken Burns — zoom suave de 8 segundos */
+.hero__image--kenburns {
+  animation: kenBurns 8000ms linear forwards;
+  transform-origin: center 40%;
+}
+
+@keyframes kenBurns {
+  from { transform: scale(1.06); }
+  to   { transform: scale(1.00); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__image--kenburns {
+    animation: none;
+  }
+}
+
+/* ── Overlays ───────────────────────────────────────────────────────────── */
+
+.hero__overlay_top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 180px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.28) 0%, transparent 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero__overlay_bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 55%;
+  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.20) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Overlay extra en mobile para mayor contraste */
+@media (max-width: 767px) {
+  .hero__overlay_bottom {
+    height: 90%;
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(0, 0, 0, 0.12) 22%,
+      rgba(0, 0, 0, 0.42) 50%,
+      rgba(0, 0, 0, 0.78) 78%,
+      rgba(0, 0, 0, 0.88) 100%
+    );
+  }
+}
+
+/* ── Contenido ──────────────────────────────────────────────────────────── */
+
+.hero__content {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 var(--space-20) var(--space-20);
+}
+
+@media (max-width: 1439px) {
+  .hero__content {
+    padding: 0 var(--space-16) var(--space-16);
+  }
+}
+
+@media (max-width: 1023px) {
+  .hero__content {
+    padding: 0 var(--space-10) var(--space-12);
+  }
+}
+
+@media (max-width: 767px) {
+  .hero__content {
+    padding: 0 var(--space-5) var(--space-10);
+  }
+
+  .hero__text {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+/* ── Bloque de texto ────────────────────────────────────────────────────── */
+
+.hero__text {
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Animaciones de entrada — activadas cuando la imagen carga */
+.hero__text > * {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 700ms var(--ease-spring),
+    transform 700ms var(--ease-spring);
+  transition-delay: var(--delay, 0ms);
+}
+
+.hero__text--visible > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__text > * {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Overline */
+.hero__overline {
+  color: var(--color-text-accent);
+  margin-bottom: var(--space-4);
+}
+
+@media (max-width: 767px) {
+  .hero__overline {
+    margin-bottom: var(--space-2);
+  }
+}
+
+/* Línea dorada */
+.hero__goldline {
+  margin-bottom: var(--space-6);
+  animation: scaleXIn 500ms var(--ease-decelerate) forwards;
+  animation-delay: var(--delay, 100ms);
+  transform: scaleX(0);
+  /* Se anima cuando hero__text--visible se aplica */
+}
+
+@media (max-width: 767px) {
+  .hero__goldline {
+    margin-bottom: var(--space-3);
+  }
+}
+
+.hero__text--visible .hero__goldline {
+  transform: scaleX(0); /* reset para dejar que CSS animation lo controle */
+}
+
+@keyframes scaleXIn {
+  to { transform: scaleX(1); }
+}
+
+/* Titular */
+.hero__title {
+  color: var(--color-text-inverse);
+  text-shadow: var(--shadow-text);
+  max-width: 620px;
+  margin-bottom: var(--space-5);
+}
+
+@media (max-width: 767px) {
+  .hero__title {
+    font-size: 38px;
+    line-height: 1.08;
+    letter-spacing: 0.01em;
+    max-width: 300px;
+    margin-bottom: var(--space-3);
+  }
+}
+
+/* Subtítulo */
+.hero__subtitle {
+  color: rgba(245, 242, 238, 0.82);
+  margin-bottom: var(--space-10);
+  max-width: 480px;
+}
+
+@media (max-width: 767px) {
+  .hero__subtitle {
+    font-size: 15px;
+    line-height: 1.5;
+    margin-bottom: var(--space-6);
+  }
+}
+
+/* ── Acciones ───────────────────────────────────────────────────────────── */
+
+.hero__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+@media (max-width: 767px) {
+  .hero__actions {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-4);
+  }
+}
+
+/* Botón — variante inverse sobre fondo oscuro */
+.hero__btn {
+  border-color: rgba(245, 242, 238, 0.70) !important;
+  color: var(--color-text-inverse) !important;
+}
+
+.hero__btn:hover {
+  background-color: var(--color-text-inverse) !important;
+  color: var(--color-brand-primary) !important;
+}
+
+/* Año */
+.hero__since {
+  color: rgba(245, 242, 238, 0.50);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+}
+
+@media (max-width: 767px) {
+  .hero__since {
+    display: none;
+  }
+}
+
+/* ── Scroll indicator ───────────────────────────────────────────────────── */
+
+.hero__scroll {
+  position: absolute;
+  bottom: var(--space-8);
+  right: var(--space-20);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  opacity: 0;
+  animation: fadeIn 600ms var(--ease-out) 1200ms forwards;
+}
+
+@media (max-width: 1023px) {
+  .hero__scroll {
+    display: none;
+  }
+}
+
+.hero__scroll_line {
+  display: block;
+  width: 1px;
+  height: 48px;
+  background-color: rgba(245, 242, 238, 0.30);
+}
+
+.hero__scroll_dot {
+  display: block;
+  width: 4px;
+  height: 4px;
+  border-radius: var(--radius-full);
+  background-color: rgba(245, 242, 238, 0.50);
+  animation: scrollIndicator 1500ms var(--ease-in-out) 1500ms infinite;
+}
+
+@keyframes scrollIndicator {
+  0%   { transform: translateY(-24px); opacity: 0; }
+  30%  { opacity: 1; }
+  70%  { opacity: 1; }
+  100% { transform: translateY(24px); opacity: 0; }
+}
