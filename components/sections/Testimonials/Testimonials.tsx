@@ -21,14 +21,6 @@ export function Testimonials() {
               {testimonialsContent.title}
             </h2>
           </ScrollReveal>
-
-          <ScrollReveal
-            variant="fadeIn"
-            delay={120}
-            className={styles.testimonials__intro}
-          >
-            <p className="body-lg">{testimonialsContent.introduction}</p>
-          </ScrollReveal>
         </header>
 
         <ScrollReveal threshold={0.15}>

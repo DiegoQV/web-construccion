@@ -5,7 +5,9 @@ import {
   useEffect,
   useRef,
   useState,
+  type FocusEvent,
   type KeyboardEvent,
+  type PointerEvent,
   type UIEvent,
 } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -23,6 +25,7 @@ export function TestimonialSlider({
 }: TestimonialSliderProps) {
   const viewportRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
   const prefersReducedMotion = useReducedMotion();
 
   const goToSlide = useCallback(
@@ -75,8 +78,42 @@ export function TestimonialSlider({
     return () => window.removeEventListener("resize", alignActiveSlide);
   }, [activeIndex]);
 
+  useEffect(() => {
+    if (prefersReducedMotion || isPaused || testimonials.length < 2) return;
+
+    const timer = window.setTimeout(() => {
+      goToSlide(activeIndex + 1);
+    }, 7000);
+
+    return () => window.clearTimeout(timer);
+  }, [
+    activeIndex,
+    goToSlide,
+    isPaused,
+    prefersReducedMotion,
+    testimonials.length,
+  ]);
+
+  const handleBlur = (event: FocusEvent<HTMLDivElement>) => {
+    if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+      setIsPaused(false);
+    }
+  };
+
+  const handlePointerUp = (event: PointerEvent<HTMLDivElement>) => {
+    if (event.pointerType !== "mouse") {
+      setIsPaused(false);
+    }
+  };
+
   return (
-    <div className={styles.slider}>
+    <div
+      className={styles.slider}
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onFocusCapture={() => setIsPaused(true)}
+      onBlurCapture={handleBlur}
+    >
       <div
         ref={viewportRef}
         className={styles.slider__viewport}
@@ -86,6 +123,9 @@ export function TestimonialSlider({
         tabIndex={0}
         onScroll={handleScroll}
         onKeyDown={handleKeyDown}
+        onPointerDown={() => setIsPaused(true)}
+        onPointerUp={handlePointerUp}
+        onPointerCancel={() => setIsPaused(false)}
       >
         <div className={styles.slider__track}>
           {testimonials.map((testimonial, index) => (
@@ -102,26 +142,26 @@ export function TestimonialSlider({
         </div>
       </div>
 
-      <div className={styles.slider__controls}>
-        <div className={styles.slider__arrows}>
-          <button
-            type="button"
-            className={styles.slider__arrow}
-            aria-label="Ver testimonio anterior"
-            onClick={() => goToSlide(activeIndex - 1)}
-          >
-            <ChevronLeft aria-hidden="true" size={20} strokeWidth={1.5} />
-          </button>
-          <button
-            type="button"
-            className={styles.slider__arrow}
-            aria-label="Ver testimonio siguiente"
-            onClick={() => goToSlide(activeIndex + 1)}
-          >
-            <ChevronRight aria-hidden="true" size={20} strokeWidth={1.5} />
-          </button>
-        </div>
+      <div className={styles.slider__arrows}>
+        <button
+          type="button"
+          className={styles.slider__arrow}
+          aria-label="Ver testimonio anterior"
+          onClick={() => goToSlide(activeIndex - 1)}
+        >
+          <ChevronLeft aria-hidden="true" size={20} strokeWidth={1.5} />
+        </button>
+        <button
+          type="button"
+          className={styles.slider__arrow}
+          aria-label="Ver testimonio siguiente"
+          onClick={() => goToSlide(activeIndex + 1)}
+        >
+          <ChevronRight aria-hidden="true" size={20} strokeWidth={1.5} />
+        </button>
+      </div>
 
+      <div className={styles.slider__controls}>
         <div
           className={styles.slider__indicators}
           aria-label="Seleccionar testimonio"

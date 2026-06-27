@@ -41,8 +41,10 @@ export function Hero() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [prefersReduced]);
 
-  // Parallax: imagen se mueve al 40% de la velocidad de scroll
-  const parallaxOffset = prefersReduced ? 0 : scrollY * 0.4;
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+  const parallaxOffset = prefersReduced
+    ? 0
+    : scrollY * (isMobile ? 0.12 : 0.4);
 
   return (
     <section
@@ -63,11 +65,11 @@ export function Hero() {
         }
       >
         <Image
-          src="/images/hero/casa-nocturna.png"
-          alt="Fachada iluminada de noche de vivienda residencial construida por el maestro, con acabados en concreto arquitectónico y marcos de madera natural"
+          src="/images/hero/residencia-oficial.png"
+          alt="Vivienda residencial contemporánea de dos niveles con volúmenes definidos y carpintería de madera"
           fill
-          priority
-          quality={90}
+          preload
+          quality={75}
           sizes="100vw"
           className={cn(
             styles.hero__image,
@@ -75,7 +77,6 @@ export function Hero() {
             isLoaded && styles["hero__image--loaded"]
           )}
           onLoad={() => setIsLoaded(true)}
-          style={{ objectPosition: "center 40%" }}
         />
       </div>
 
