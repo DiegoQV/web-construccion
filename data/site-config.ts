@@ -52,7 +52,7 @@ export const siteConfig = {
   /** Used as <title> template: "Page | siteName" */
   siteName: "Maestro Constructor — Viviendas de Alta Calidad",
   metaDescription:
-    "Construcción de viviendas residenciales de alta calidad en Ecuador. Más de 20 años de experiencia. Presupuesto cerrado, entrega garantizada.",
+    "Construcción de viviendas residenciales de alta calidad en Perú. Más de 20 años de experiencia. Presupuesto cerrado, entrega garantizada.",
   /** Path to OG image in /public */
   ogImage: "/images/hero/casa-nocturna.png",
 
