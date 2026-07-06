@@ -105,7 +105,8 @@ export function Hero() {
             className={cn(styles.hero__title, "display-xl")}
             style={{ "--delay": "150ms" } as React.CSSProperties}
           >
-            {siteConfig.tagline}
+            <span>Construimos la casa</span>
+            <span>que imaginaste.</span>
           </h1>
 
           {/* Subtítulo */}

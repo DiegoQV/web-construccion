@@ -102,15 +102,18 @@ export function Navbar() {
 
             {/* Hamburger — visible solo en tablet/mobile */}
             <button
+              type="button"
               className={styles.navbar__hamburger}
               onClick={() => setDrawerOpen(true)}
               aria-label="Abrir menú de navegación"
               aria-expanded={drawerOpen}
               aria-controls="nav-drawer"
             >
-              <span className={styles.hamburger__line} aria-hidden="true" />
-              <span className={styles.hamburger__line} aria-hidden="true" />
-              <span className={styles.hamburger__line} aria-hidden="true" />
+              <span className={styles.hamburger__icon} aria-hidden="true">
+                <span className={styles.hamburger__line} />
+                <span className={styles.hamburger__line} />
+                <span className={styles.hamburger__line} />
+              </span>
             </button>
           </div>
         </div>
