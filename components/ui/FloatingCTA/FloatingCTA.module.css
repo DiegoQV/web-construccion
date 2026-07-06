@@ -10,11 +10,13 @@
   justify-content: center;
   gap: var(--space-3);
   padding-inline: var(--space-5);
-  border: var(--border-width-thin) solid rgba(245, 242, 238, 0.2);
+  border: var(--border-width-thin) solid rgba(255, 255, 255, 0.34);
   border-radius: var(--radius-full);
-  background-color: var(--color-brand-accent);
-  color: var(--color-text-inverse);
-  box-shadow: var(--shadow-lg);
+  background-color: #25d366;
+  color: #ffffff;
+  box-shadow:
+    0 12px 30px rgba(9, 74, 32, 0.28),
+    0 2px 8px rgba(13, 13, 11, 0.18);
   font-family: var(--font-body);
   text-decoration: none;
   isolation: isolate;
@@ -22,7 +24,8 @@
   transition:
     opacity var(--transition-base),
     transform var(--transition-base),
-    box-shadow var(--transition-shadow);
+    box-shadow var(--transition-shadow),
+    background-color var(--transition-color);
 }
 
 .button::before {
@@ -30,7 +33,7 @@
   position: absolute;
   inset: -1px;
   z-index: -1;
-  border: var(--border-width-thin) solid var(--color-border-accent);
+  border: var(--border-width-thin) solid rgba(37, 211, 102, 0.72);
   border-radius: inherit;
   pointer-events: none;
   animation: contactPulse 2.4s var(--ease-out) 1.5s 2;
@@ -43,13 +46,22 @@
   text-transform: uppercase;
 }
 
+.icon {
+  width: 25px;
+  height: 25px;
+  flex: 0 0 auto;
+}
+
 .button--faded {
-  opacity: 0.7;
+  opacity: 0.82;
 }
 
 .button:hover {
   opacity: 1;
-  box-shadow: var(--shadow-xl);
+  background-color: #20bd5a;
+  box-shadow:
+    0 16px 36px rgba(9, 74, 32, 0.34),
+    0 3px 10px rgba(13, 13, 11, 0.2);
   transform: translateY(-3px);
 }
 

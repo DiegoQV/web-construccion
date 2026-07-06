@@ -90,8 +90,10 @@
 }
 
 .navbar__logo_name {
+  display: block;
   color: var(--color-bronze-light);
   text-shadow: 0 1px 5px rgba(13, 13, 11, 0.55);
+  animation: brandReveal 760ms var(--ease-out) 140ms both;
   transition:
     color var(--transition-color),
     text-shadow var(--transition-color);
@@ -107,7 +109,42 @@
   letter-spacing: 0.18em;
   text-transform: uppercase;
   text-shadow: var(--shadow-text);
+  animation: brandRoleReveal 560ms var(--ease-out) 620ms both;
   transition: color var(--transition-color);
+}
+
+@keyframes brandReveal {
+  from {
+    opacity: 0;
+    clip-path: inset(0 100% 0 0);
+    transform: translateX(-7px);
+  }
+
+  to {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+    transform: translateX(0);
+  }
+}
+
+@keyframes brandRoleReveal {
+  from {
+    opacity: 0;
+    letter-spacing: 0.25em;
+    transform: translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navbar__logo_name,
+  .navbar__logo_role {
+    animation: none;
+  }
 }
 
 .navbar--scrolled .navbar__logo_name {
