@@ -94,11 +94,6 @@
   height: 100%;
   object-fit: cover;
   object-position: center 48%;
-  opacity: 0;
-  transition: opacity 600ms var(--ease-out);
-}
-
-.hero__image--loaded {
   opacity: 1;
 }
 
@@ -240,19 +235,11 @@
   }
 }
 
-/* Animaciones de entrada — activadas cuando la imagen carga */
+/* El contenido permanece visible incluso si la imagen llega desde caché. */
 .hero__text > * {
-  opacity: 0;
-  transform: translateY(12px);
-  transition:
-    opacity 600ms var(--ease-out),
-    transform 600ms var(--ease-out);
-  transition-delay: var(--delay, 0ms);
-}
-
-.hero__text--visible > * {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
+  transition: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -287,7 +274,7 @@
   animation: scaleXIn 500ms var(--ease-decelerate) forwards;
   animation-delay: var(--delay, 100ms);
   transform: scaleX(0);
-  /* Se anima cuando hero__text--visible se aplica */
+  /* Entrada breve del acento editorial. */
 }
 
 @media (max-width: 767px) {
@@ -295,10 +282,6 @@
     order: 4;
     margin-bottom: 28px;
   }
-}
-
-.hero__text--visible .hero__goldline {
-  transform: scaleX(0); /* reset para dejar que CSS animation lo controle */
 }
 
 @keyframes scaleXIn {
@@ -437,8 +420,7 @@
     transition: none;
   }
 
-  .hero__goldline,
-  .hero__text--visible .hero__goldline {
+  .hero__goldline {
     animation: none;
     transform: none;
   }

@@ -39,7 +39,12 @@ export function Navbar() {
             className={styles.navbar__logo}
             aria-label={`${siteConfig.businessName} — Inicio`}
           >
-            {siteConfig.ownerName}
+            <span className={styles.navbar__logo_name}>
+              {siteConfig.ownerName}
+            </span>
+            <span className={styles.navbar__logo_role} aria-hidden="true">
+              Maestro Constructor
+            </span>
           </Link>
 
           {/* ── Navegación desktop ────────────────────────── */}

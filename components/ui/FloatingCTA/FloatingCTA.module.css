@@ -1,28 +1,46 @@
 .button {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 52px;
-  height: 52px;
-  background-color: var(--color-brand-accent);
-  color: var(--color-text-inverse);
-  border-radius: var(--radius-full);
-  box-shadow: var(--shadow-lg);
+  right: var(--space-8);
+  bottom: var(--space-8);
+  z-index: var(--z-modal);
   display: flex;
+  min-width: 148px;
+  height: 56px;
   align-items: center;
   justify-content: center;
-  z-index: var(--z-modal);
+  gap: var(--space-3);
+  padding-inline: var(--space-5);
+  border: var(--border-width-thin) solid rgba(245, 242, 238, 0.2);
+  border-radius: var(--radius-full);
+  background-color: var(--color-brand-accent);
+  color: var(--color-text-inverse);
+  box-shadow: var(--shadow-lg);
+  font-family: var(--font-body);
+  text-decoration: none;
+  isolation: isolate;
+  animation: contactEnter 600ms var(--ease-out) 700ms backwards;
   transition:
     opacity var(--transition-base),
-    transform var(--transition-base);
-  /* Only visible on mobile */
-  display: none;
+    transform var(--transition-base),
+    box-shadow var(--transition-shadow);
 }
 
-@media (max-width: 767px) {
-  .button {
-    display: flex;
-  }
+.button::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  border: var(--border-width-thin) solid var(--color-border-accent);
+  border-radius: inherit;
+  pointer-events: none;
+  animation: contactPulse 2.4s var(--ease-out) 1.5s 2;
+}
+
+.label {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
 }
 
 .button--faded {
@@ -31,9 +49,62 @@
 
 .button:hover {
   opacity: 1;
-  transform: scale(1.05);
+  box-shadow: var(--shadow-xl);
+  transform: translateY(-3px);
 }
 
 .button:active {
-  transform: scale(0.96);
+  transform: translateY(-1px) scale(0.98);
+}
+
+.button:focus-visible {
+  outline: 3px solid var(--color-state-focus-ring);
+  outline-offset: 4px;
+}
+
+@keyframes contactEnter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes contactPulse {
+  0% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+
+  70%,
+  100% {
+    opacity: 0;
+    transform: scale(1.18);
+  }
+}
+
+@media (max-width: 767px) {
+  .button {
+    right: var(--space-5);
+    bottom: var(--space-5);
+    min-width: 0;
+    width: 56px;
+    padding-inline: 0;
+  }
+
+  .label {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button,
+  .button::before {
+    animation: none;
+    transition: none;
+  }
 }

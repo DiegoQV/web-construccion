@@ -7,25 +7,26 @@
 export const siteConfig = {
   // ── Business identity ────────────────────────────────────────────────────
   businessName: "Maestro Constructor",
-  ownerName: "Nombre del Maestro",
+  ownerName: "Dilbert Tuesta",
   tagline: "Construimos la casa que imaginaste.",
   specialty: "Construcción residencial de alta calidad",
   foundingYear: 2003,
 
   // ── Location ─────────────────────────────────────────────────────────────
-  city: "Ciudad",
-  region: "Región",
-  country: "Ecuador",
-  /** ISO region code for geo meta tags e.g. "EC-P" */
-  geoRegion: "EC",
+  city: "Chachapoyas",
+  region: "Amazonas",
+  country: "Perú",
+  /** ISO region code for geo meta tags e.g. "PE-AMA" */
+  geoRegion: "PE-AMA",
 
   // ── Contact ──────────────────────────────────────────────────────────────
   /** Display format shown in the UI */
-  phoneDisplay: "+593 XX XXX XXXX",
+  phoneDisplay: "+51 953 144 286",
   /** href format for tel: links */
-  phoneHref: "tel:+593XXXXXXXXX",
+  phoneHref: "tel:+51953144286",
   /** WhatsApp link */
-  whatsappHref: "https://wa.me/593XXXXXXXXX",
+  whatsappHref:
+    "https://wa.me/51953144286?text=Hola%20Dilbert%2C%20quisiera%20informaci%C3%B3n%20sobre%20un%20proyecto%20de%20construcci%C3%B3n.",
   email: "contacto@ejemplo.com",
 
   // ── Statistics (shown in Credentials section) ────────────────────────────

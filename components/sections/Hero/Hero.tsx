@@ -20,7 +20,6 @@ import styles from "./Hero.module.css";
  */
 export function Hero() {
   const prefersReduced = useReducedMotion();
-  const [isLoaded, setIsLoaded] = useState(false);
   const [scrollY, setScrollY] = useState(0);
   const heroRef = useRef<HTMLElement>(null);
 
@@ -73,10 +72,8 @@ export function Hero() {
           sizes="100vw"
           className={cn(
             styles.hero__image,
-            !prefersReduced && styles["hero__image--kenburns"],
-            isLoaded && styles["hero__image--loaded"]
+            !prefersReduced && styles["hero__image--kenburns"]
           )}
-          onLoad={() => setIsLoaded(true)}
         />
       </div>
 
@@ -88,12 +85,7 @@ export function Hero() {
 
       {/* ── Contenido de texto ───────────────────────────── */}
       <div className={styles.hero__content}>
-        <div
-          className={cn(
-            styles.hero__text,
-            isLoaded && styles["hero__text--visible"]
-          )}
-        >
+        <div className={styles.hero__text}>
           {/* Etiqueta pre-titular */}
           <p
             className={cn(styles.hero__overline, "overline")}

@@ -75,24 +75,92 @@
 /* ── Logo / Nombre ──────────────────────────────────────────────────────── */
 
 .navbar__logo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
   font-family: var(--font-display);
   font-weight: var(--font-weight-regular);
   font-size: 22px;
+  line-height: 1;
   letter-spacing: var(--tracking-display);
-  color: var(--color-text-inverse);
   text-decoration: none;
   white-space: nowrap;
   flex-shrink: 0;
+}
+
+.navbar__logo_name {
+  color: var(--color-bronze-light);
+  text-shadow: 0 1px 5px rgba(13, 13, 11, 0.55);
+  transition:
+    color var(--transition-color),
+    text-shadow var(--transition-color);
+}
+
+.navbar__logo_role {
+  display: none;
+  color: rgba(245, 242, 238, 0.78);
+  font-family: var(--font-body);
+  font-size: 9px;
+  font-weight: var(--font-weight-medium);
+  line-height: 1;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-shadow: var(--shadow-text);
   transition: color var(--transition-color);
 }
 
-.navbar--scrolled .navbar__logo {
-  color: var(--color-text-primary);
+.navbar--scrolled .navbar__logo_name {
+  color: var(--color-bronze-deep);
+  text-shadow: none;
 }
 
 @media (max-width: 767px) {
   .navbar__logo {
-    font-size: 18px;
+    margin-left: -8px;
+    padding: 7px 12px 6px 10px;
+    border-left: 2px solid var(--color-bronze-light);
+    background: linear-gradient(
+      90deg,
+      rgba(13, 13, 11, 0.62) 0%,
+      rgba(13, 13, 11, 0.36) 72%,
+      transparent 100%
+    );
+    font-size: 25px;
+    font-weight: var(--font-weight-medium);
+    letter-spacing: 0.005em;
+    text-shadow: none;
+    backdrop-filter: blur(5px) saturate(115%);
+    -webkit-backdrop-filter: blur(5px) saturate(115%);
+    transition:
+      background-color var(--transition-color),
+      border-color var(--transition-color),
+      backdrop-filter var(--transition-color);
+  }
+
+  .navbar__logo_name {
+    color: var(--color-bronze-pale);
+    text-shadow: 0 2px 8px rgba(13, 13, 11, 0.72);
+  }
+
+  .navbar__logo_role {
+    display: block;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 9px;
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.2em;
+  }
+
+  .navbar--scrolled .navbar__logo {
+    border-left-color: var(--color-bronze-deep);
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .navbar--scrolled .navbar__logo_role {
+    color: var(--color-text-secondary);
+    text-shadow: none;
   }
 }
 
