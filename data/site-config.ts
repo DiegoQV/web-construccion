@@ -10,7 +10,7 @@ export const siteConfig = {
   ownerName: "Dilbert Tuesta",
   tagline: "Construimos la casa que imaginaste.",
   specialty: "Construcción residencial de alta calidad",
-  foundingYear: 2003,
+  foundingYear: 2011,
 
   // ── Location ─────────────────────────────────────────────────────────────
   city: "Chachapoyas",
@@ -32,12 +32,12 @@ export const siteConfig = {
   // ── Statistics (shown in Credentials section) ────────────────────────────
   stats: [
     {
-      value: 20,
+      value: 15,
       suffix: "+",
       label: "Años de experiencia",
     },
     {
-      value: 150,
+      value: 20,
       suffix: "+",
       label: "Proyectos completados",
     },
@@ -53,7 +53,7 @@ export const siteConfig = {
   /** Used as <title> template: "Page | siteName" */
   siteName: "Maestro Constructor — Viviendas de Alta Calidad",
   metaDescription:
-    "Construcción de viviendas residenciales de alta calidad en Perú. Más de 20 años de experiencia. Presupuesto cerrado, entrega garantizada.",
+    "Construcción de viviendas residenciales de alta calidad en Perú. Más de 15 años de experiencia y 20 proyectos terminados.",
   /** Path to OG image in /public */
   ogImage: "/images/hero/casa-nocturna.png",
 
