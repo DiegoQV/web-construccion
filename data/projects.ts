@@ -77,7 +77,7 @@ export const projects: Project[] = [
     highlight: "Distribución e iluminación",
     featured: false,
     image: {
-      src: "/images/gallery/interior-residencial-acabados.jfif",
+      src: "/images/gallery/interior-residencial-acabados.jpg",
       alt: "Interior residencial renovado con circulación amplia, iluminación empotrada y acabados de piso continuo",
       width: 1198,
       height: 1600,
