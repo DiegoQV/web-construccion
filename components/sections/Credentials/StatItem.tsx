@@ -5,7 +5,7 @@ interface StatItemProps {
   value: number;
   suffix: string;
   label: string;
-  status: "placeholder";
+  status: "placeholder" | "verified";
   index: number;
 }
 

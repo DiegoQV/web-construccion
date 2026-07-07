@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
+import { siteConfig } from "@/data/site-config";
 import styles from "./VideoShowcaseSection.module.css";
 
 export function VideoShowcaseSection() {
@@ -128,7 +129,9 @@ export function VideoShowcaseSection() {
         >
           <span className={styles.showcase__rule} aria-hidden="true" />
           <Button
-            href="#contacto"
+            href={siteConfig.whatsappHref}
+            target="_blank"
+            rel="noopener noreferrer"
             variant="outline"
             size="md"
             className={styles.showcase__cta}

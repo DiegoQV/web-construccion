@@ -8,6 +8,8 @@ export interface ButtonProps
   size?: ButtonSize;
   /** Renders as an anchor tag when provided */
   href?: string;
+  target?: React.HTMLAttributeAnchorTarget;
+  rel?: string;
   children: React.ReactNode;
 }
 
@@ -25,6 +27,8 @@ export function Button({
   variant = "outline",
   size = "md",
   href,
+  target,
+  rel,
   className,
   children,
   ...props
@@ -38,7 +42,7 @@ export function Button({
 
   if (href) {
     return (
-      <a href={href} className={classes}>
+      <a href={href} className={classes} target={target} rel={rel}>
         {children}
       </a>
     );

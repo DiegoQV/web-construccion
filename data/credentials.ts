@@ -6,17 +6,17 @@ export const credentialsContent = {
   stats: [
     {
       id: "experience",
-      value: 20,
+      value: 15,
       suffix: "+",
       label: "Años de experiencia",
-      status: "placeholder",
+      status: "verified",
     },
     {
       id: "projects",
-      value: 150,
+      value: 20,
       suffix: "+",
-      label: "Proyectos ejecutados",
-      status: "placeholder",
+      label: "Proyectos terminados",
+      status: "verified",
     },
     {
       id: "clients",
@@ -35,5 +35,4 @@ export const credentialsContent = {
   ],
 } as const;
 
-// TODO(content): Replace every placeholder value after the client validates
-// the definitive business figures.
+// TODO(content): Replace the remaining placeholder values after validation.
