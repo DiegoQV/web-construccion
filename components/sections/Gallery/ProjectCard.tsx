@@ -12,6 +12,7 @@ interface ProjectCardProps {
   project: Project;
   index: number;
   variant: ProjectCardVariant;
+  isActive?: boolean;
 }
 
 const imageSizes: Record<ProjectCardVariant, string> = {
@@ -25,10 +26,24 @@ export function ProjectCard({
   project,
   index,
   variant,
+  isActive = false,
 }: ProjectCardProps) {
   return (
-    <article className={styles.card} data-variant={variant}>
+    <article
+      className={styles.card}
+      data-variant={variant}
+      data-active={isActive}
+    >
       <div className={styles.card__media}>
+        <Image
+          src={project.image.src}
+          alt=""
+          fill
+          sizes={imageSizes[variant]}
+          className={styles.card__backdrop}
+          style={{ objectPosition: project.image.focalPoint ?? "center" }}
+          aria-hidden="true"
+        />
         <Image
           src={project.image.src}
           alt={project.image.alt}
@@ -40,6 +55,8 @@ export function ProjectCard({
       </div>
 
       <div className={styles.card__caption}>
+        <h3 className={styles.card__title}>{project.title}</h3>
+
         <div className={styles.card__meta}>
           <span aria-hidden="true">
             {String(index + 1).padStart(2, "0")}
@@ -47,8 +64,6 @@ export function ProjectCard({
           <span>{project.location}</span>
           <span>{project.year}</span>
         </div>
-
-        <h3 className={styles.card__title}>{project.title}</h3>
         <p className={styles.card__description}>{project.description}</p>
       </div>
     </article>

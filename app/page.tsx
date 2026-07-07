@@ -9,6 +9,7 @@ import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
 import { Credentials } from "@/components/sections/Credentials";
 import { Gallery } from "@/components/sections/Gallery";
+import { VideoShowcaseSection } from "@/components/sections/VideoShowcaseSection";
 import { About } from "@/components/sections/About";
 import { Process } from "@/components/sections/Process";
 import { Materials } from "@/components/sections/Materials";
@@ -33,26 +34,29 @@ export default function HomePage() {
         {/* 03 — Galería: Fotografías 2, 3 y 4 */}
         <Gallery />
 
-        {/* 04 — El Maestro: presentación personal */}
+        {/* 04 — Recorrido audiovisual de una vivienda */}
+        <VideoShowcaseSection />
+
+        {/* 05 — El Maestro: presentación personal */}
         <About />
 
-        {/* 05 — Proceso constructivo: 5 pasos */}
+        {/* 06 — Proceso constructivo: 5 pasos */}
         <Process />
 
-        {/* 06 — Materiales y calidad */}
+        {/* 07 — Materiales y calidad */}
         <Materials />
 
-        {/* 07 — Testimonios */}
+        {/* 08 — Testimonios */}
         <Testimonials />
 
-        {/* 08 — Preguntas frecuentes */}
+        {/* 09 — Preguntas frecuentes */}
         <FAQ />
 
-        {/* 09 — CTA Final */}
+        {/* 10 — CTA Final */}
         <CTAFinal />
       </main>
 
-      {/* 10 — Footer */}
+      {/* 11 — Footer */}
       <Footer />
     </>
   );

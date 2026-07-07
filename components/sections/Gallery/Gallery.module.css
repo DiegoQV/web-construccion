@@ -37,6 +37,10 @@
   display: none;
 }
 
+.gallery__mobile_progress {
+  display: none;
+}
+
 .gallery__composition {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -110,12 +114,12 @@
 
 @media (max-width: 767px) {
   .gallery__inner {
-    padding: var(--space-20) var(--space-5);
+    padding: var(--space-16) var(--space-5) var(--space-20);
   }
 
   .gallery__header {
-    gap: var(--space-6);
-    margin-bottom: var(--space-8);
+    gap: var(--space-4);
+    margin-bottom: var(--space-5);
   }
 
   .gallery__heading h2 {
@@ -130,13 +134,53 @@
   .gallery__mobile_hint {
     display: flex;
     justify-content: space-between;
-    margin-bottom: var(--space-5);
+    margin-bottom: var(--space-2);
     color: var(--color-text-muted);
     font-family: var(--font-body);
     font-size: var(--font-size-2xs);
     font-weight: var(--font-weight-medium);
     letter-spacing: var(--tracking-widest);
     text-transform: uppercase;
+  }
+
+  .gallery__mobile_count {
+    color: var(--color-text-secondary);
+  }
+
+  .gallery__mobile_progress {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+    margin-bottom: var(--space-2);
+  }
+
+  .gallery__progress_button {
+    position: relative;
+    height: 12px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .gallery__progress_button::after {
+    content: "";
+    position: absolute;
+    top: 5px;
+    right: 0;
+    left: 0;
+    height: 2px;
+    background-color: var(--color-border-subtle);
+    transition: background-color var(--transition-color);
+  }
+
+  .gallery__progress_button[data-active="true"]::after {
+    background-color: var(--color-brand-accent);
+  }
+
+  .gallery__progress_button:focus-visible {
+    outline: 2px solid var(--color-brand-accent);
+    outline-offset: 2px;
   }
 
   .gallery__composition {
@@ -160,10 +204,11 @@
   .gallery__item--portrait,
   .gallery__item--landscape,
   .gallery__item--process {
-    flex: 0 0 calc(100vw - 48px);
+    flex: 0 0 calc(100vw - 28px);
     min-width: 0;
     margin: 0;
     scroll-snap-align: start;
     scroll-snap-stop: always;
   }
+
 }

@@ -1,3 +1,6 @@
+"use client";
+
+import { useRef, useState } from "react";
 import { projects, featuredProject } from "@/data/projects";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
@@ -17,6 +20,32 @@ const variants: ProjectCardVariant[] = [
 ];
 
 export function Gallery() {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [activeProject, setActiveProject] = useState(0);
+
+  const updateActiveProject = () => {
+    const track = trackRef.current;
+    if (!track) return;
+
+    const closestIndex = Array.from(track.children).reduce(
+      (closest, item, index) =>
+        Math.abs((item as HTMLElement).offsetLeft - track.scrollLeft) <
+        Math.abs(
+          (track.children[closest] as HTMLElement).offsetLeft - track.scrollLeft
+        )
+          ? index
+          : closest,
+      0
+    );
+
+    setActiveProject(closestIndex);
+  };
+
+  const goToProject = (index: number) => {
+    const item = trackRef.current?.children[index] as HTMLElement | undefined;
+    item?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
+  };
+
   return (
     <section
       id="proyectos"
@@ -38,18 +67,40 @@ export function Gallery() {
             className={styles.gallery__intro}
           >
             <p className="body-lg">
-              Una selección de viviendas donde estructura, proporción y acabado
-              trabajan juntos para crear espacios hechos para durar.
+              Viviendas donde estructura, proporción y acabado crean espacios
+              hechos para durar.
             </p>
           </ScrollReveal>
         </header>
 
-        <div className={styles.gallery__mobile_hint} aria-hidden="true">
-          <span>Desliza para explorar</span>
-          <span>01—04</span>
+        <div className={styles.gallery__mobile_hint}>
+          <span aria-hidden="true">← Desliza para explorar →</span>
+          <span className={styles.gallery__mobile_count} aria-live="polite">
+            {String(activeProject + 1).padStart(2, "0")}—
+            {String(orderedProjects.length).padStart(2, "0")}
+          </span>
         </div>
 
-        <div className={styles.gallery__composition}>
+        <div className={styles.gallery__mobile_progress} aria-label="Seleccionar proyecto">
+          {orderedProjects.map((project, index) => (
+            <button
+              key={project.id}
+              type="button"
+              className={styles.gallery__progress_button}
+              data-active={index === activeProject}
+              aria-label={`Ver proyecto ${index + 1}: ${project.title}`}
+              aria-current={index === activeProject ? "true" : undefined}
+              onClick={() => goToProject(index)}
+            />
+          ))}
+        </div>
+
+        <div
+          ref={trackRef}
+          className={styles.gallery__composition}
+          onScroll={updateActiveProject}
+          aria-label="Proyectos construidos"
+        >
           {orderedProjects.map((project, index) => (
             <ScrollReveal
               key={project.id}
@@ -61,6 +112,7 @@ export function Gallery() {
                 project={project}
                 index={index}
                 variant={variants[index]}
+                isActive={index === activeProject}
               />
             </ScrollReveal>
           ))}

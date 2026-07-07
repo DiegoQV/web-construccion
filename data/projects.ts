@@ -16,7 +16,7 @@ export const projects: Project[] = [
     year: 2024,
     size: "240 m²",
     description:
-      "Vivienda urbana de tres niveles con fachada de líneas limpias, paños acristalados de gran formato y carpintería metálica. La distribución vertical aprovecha el lote con precisión y mantiene iluminación natural en los ambientes principales.",
+      "Tres niveles resueltos con precisión, amplios paños acristalados y luz natural en los ambientes principales.",
     highlight: "Fachada y luz natural",
     featured: false,
     image: {
@@ -35,7 +35,7 @@ export const projects: Project[] = [
     year: 2024,
     size: "210 m²",
     description:
-      "Vivienda de dos niveles implantada sobre un terreno inclinado, con accesos diferenciados y espacios interiores bien iluminados. La solución constructiva aprovecha la pendiente y resuelve una fachada sobria, resistente y de mantenimiento sencillo.",
+      "Una vivienda luminosa que aprovecha la pendiente con accesos claros y una fachada resistente de mantenimiento sencillo.",
     highlight: "Adaptación al terreno",
     featured: false,
     image: {
@@ -54,7 +54,7 @@ export const projects: Project[] = [
     year: 2023,
     size: "220 m²",
     description:
-      "Vivienda de dos niveles con ambientes bien distribuidos, amplios paños acristalados y carpintería de madera ejecutada a medida. La continuidad de los acabados refuerza una imagen sobria, luminosa y duradera.",
+      "Dos niveles, amplios paños acristalados y carpintería de madera a medida para una vivienda luminosa y duradera.",
     highlight: "Carpintería a medida",
     featured: true,
     image: {
@@ -73,7 +73,7 @@ export const projects: Project[] = [
     year: 2025,
     size: "95 m²",
     description:
-      "Intervención interior orientada a mejorar la circulación, la iluminación y la continuidad entre ambientes. Los revestimientos de piso, cielos rasos y encuentros de acabado se ejecutaron con una lectura limpia y funcional del espacio.",
+      "Una intervención que mejora circulación, iluminación y continuidad mediante acabados limpios y funcionales.",
     highlight: "Distribución e iluminación",
     featured: false,
     image: {
