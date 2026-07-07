@@ -1,1 +1,110 @@
-/* Footer styles — Sprint 11 */
+.footer {
+  color: var(--color-text-inverse);
+  background-color: var(--color-black-absolute);
+}
+
+.footer__inner {
+  width: 100%;
+  max-width: var(--container-2xl);
+  margin-inline: auto;
+  padding: var(--space-10) var(--space-5) var(--space-8);
+}
+
+.footer__top,
+.footer__bottom {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer__top {
+  gap: var(--space-8);
+}
+
+.footer__nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-8);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer__nav a,
+.footer__back {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  color: rgba(245, 242, 238, 0.7);
+  font-family: var(--font-body);
+  font-size: var(--font-size-xs);
+  text-decoration: none;
+  transition: color var(--transition-color);
+}
+
+.footer__nav a:hover,
+.footer__back:hover {
+  color: var(--color-bronze-light);
+}
+
+.footer__location {
+  color: rgba(245, 242, 238, 0.42);
+  font-family: var(--font-body);
+  font-size: var(--font-size-2xs);
+  line-height: var(--line-height-normal);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.footer__bottom {
+  gap: var(--space-4);
+  margin-top: var(--space-8);
+  padding-top: var(--space-6);
+  border-top: 1px solid rgba(245, 242, 238, 0.1);
+}
+
+.footer__bottom p,
+.footer__back {
+  color: rgba(245, 242, 238, 0.34);
+  font-family: var(--font-body);
+  font-size: var(--font-size-2xs);
+  line-height: var(--line-height-normal);
+  letter-spacing: var(--tracking-wide);
+}
+
+.footer__back {
+  gap: var(--space-2);
+}
+
+.footer a:focus-visible {
+  outline: 3px solid var(--color-brand-accent);
+  outline-offset: 4px;
+}
+
+@media (min-width: 768px) {
+  .footer__inner {
+    padding: var(--space-12) var(--space-10) var(--space-8);
+  }
+
+  .footer__top,
+  .footer__bottom {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer__bottom {
+    margin-top: var(--space-10);
+  }
+}
+
+@media (min-width: 1280px) {
+  .footer__inner {
+    padding-inline: var(--space-20);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footer a {
+    transition: none;
+  }
+}
