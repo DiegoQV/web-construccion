@@ -19,6 +19,8 @@ const variants: ProjectCardVariant[] = [
   "process",
 ];
 
+const getProjectVariant = (index: number) => variants[index % variants.length];
+
 export function Gallery() {
   const trackRef = useRef<HTMLDivElement>(null);
   const [activeProject, setActiveProject] = useState(0);
@@ -106,12 +108,12 @@ export function Gallery() {
               key={project.id}
               delay={index * 90}
               threshold={0.08}
-              className={`${styles.gallery__item} ${styles[`gallery__item--${variants[index]}`]}`}
+              className={`${styles.gallery__item} ${styles[`gallery__item--${getProjectVariant(index)}`]}`}
             >
               <ProjectCard
                 project={project}
                 index={index}
-                variant={variants[index]}
+                variant={getProjectVariant(index)}
                 isActive={index === activeProject}
               />
             </ScrollReveal>
