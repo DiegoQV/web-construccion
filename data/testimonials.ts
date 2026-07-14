@@ -7,21 +7,21 @@ export const testimonialsContent = {
 
 export const testimonials: Testimonial[] = [
   {
-    id: "comunicacion-obra",
+    id: "construccion-acabados-vivienda",
     quote:
-      "Desde la primera reunión supimos qué se iba a construir, cuánto costaría cada etapa y cómo avanzaría la obra. El maestro explicó cada cambio antes de ejecutarlo y estuvo presente en las decisiones importantes. Esa forma ordenada de trabajar nos dio tranquilidad durante todo el proyecto.",
-    clientName: "Familia R. (placeholder)",
-    projectType: "Vivienda unifamiliar",
+      "Quiero agradecerle por todo el trabajo de construcción y acabados de nuestra casa. Quedó muy hermosa, como la imaginamos. No solo construyó paredes, techo y porcelanatos; también puso paciencia, esmero y dedicación en cada detalle. Gracias por hacer realidad este proyecto como si fuera suyo y por darnos la tranquilidad que necesitábamos. Quedamos siempre agradecidos con su persona y su trabajo.",
+    clientName: "Rony Alexis Canturencio Avalos y Natalie Zumaeta Montoya",
+    projectType: "Construcción y acabados de vivienda",
     location: "Chachapoyas · Amazonas · Perú",
     rating: 5,
-    status: "placeholder",
+    status: "verified",
   },
   {
-    id: "presupuesto-claro",
+    id: "responsabilidad-y-acabados",
     quote:
-      "Valoramos la responsabilidad con los tiempos y el cuidado en los acabados. Cuando surgía una duda, recibíamos una respuesta directa y una solución concreta. La vivienda se entregó limpia, funcional y con cada detalle revisado junto a nosotros, tal como se había acordado.",
-    clientName: "Familia M. (placeholder)",
-    projectType: "Residencia familiar",
+      "Durante la construcción de nuestra vivienda, Dilbert trabajó con responsabilidad y mucho cuidado en los acabados. Siempre estuvo dispuesto a explicar cada avance y resolver nuestras dudas con paciencia. Valoramos especialmente su dedicación, el orden con que llevó el trabajo y la tranquilidad de saber que cada detalle estaba siendo atendido.",
+    clientName: "Consuelo Ruiz Chavez",
+    projectType: "Construcción de vivienda",
     location: "Chachapoyas · Amazonas · Perú",
     rating: 5,
     status: "placeholder",
