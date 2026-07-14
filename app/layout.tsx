@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/data/site-config";
@@ -77,6 +77,13 @@ export const metadata: Metadata = {
     "geo.region": siteConfig.geoRegion,
     "geo.placename": siteConfig.city,
   },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#17130e",
 };
 
 // ── Root Layout ───────────────────────────────────────────────────────────

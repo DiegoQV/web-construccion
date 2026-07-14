@@ -22,15 +22,18 @@ interface NavDrawerProps {
 export function NavDrawer({ isOpen, onClose }: NavDrawerProps) {
   const drawerRef = useRef<HTMLDivElement>(null);
   const firstFocusableRef = useRef<HTMLButtonElement>(null);
+  const previouslyFocusedRef = useRef<HTMLElement | null>(null);
 
   // Focus trap — move focus into drawer on open
   useEffect(() => {
     if (isOpen) {
+      previouslyFocusedRef.current = document.activeElement as HTMLElement | null;
       firstFocusableRef.current?.focus();
       // Prevent body scroll while drawer is open
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
+      previouslyFocusedRef.current?.focus();
     }
 
     return () => {
@@ -41,8 +44,30 @@ export function NavDrawer({ isOpen, onClose }: NavDrawerProps) {
   // Close on Escape key
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && isOpen) {
+      if (!isOpen) return;
+
+      if (e.key === "Escape") {
         onClose();
+        return;
+      }
+
+      if (e.key === "Tab") {
+        const focusableElements = drawerRef.current?.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        );
+
+        if (!focusableElements?.length) return;
+
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        if (e.shiftKey && document.activeElement === firstElement) {
+          e.preventDefault();
+          lastElement.focus();
+        } else if (!e.shiftKey && document.activeElement === lastElement) {
+          e.preventDefault();
+          firstElement.focus();
+        }
       }
     };
     document.addEventListener("keydown", handleKeyDown);
@@ -71,7 +96,9 @@ export function NavDrawer({ isOpen, onClose }: NavDrawerProps) {
         id="nav-drawer"
         className={cn(styles.drawer, isOpen && styles["drawer--open"])}
         role="dialog"
-        aria-modal="true"
+        aria-modal={isOpen ? "true" : undefined}
+        aria-hidden={!isOpen}
+        inert={!isOpen}
         aria-label="Menú de navegación"
       >
         {/* Cabecera del drawer */}

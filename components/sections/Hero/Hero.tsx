@@ -114,7 +114,12 @@ export function Hero() {
             className={cn(styles.hero__subtitle, "body-lg")}
             style={{ "--delay": "280ms" } as React.CSSProperties}
           >
-            Viviendas de alta calidad desde {siteConfig.foundingYear}
+            <span className={styles.hero__subtitle_desktop}>
+              15 años construyendo viviendas sólidas y personalizadas en {siteConfig.city}.
+            </span>
+            <span className={styles.hero__subtitle_mobile}>
+              15 años construyendo viviendas en {siteConfig.city}.
+            </span>
           </p>
 
           {/* Acciones */}
@@ -123,17 +128,24 @@ export function Hero() {
             style={{ "--delay": "380ms" } as React.CSSProperties}
           >
             <Button
+              variant="accent"
+              size="md"
+              href={siteConfig.whatsappHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.hero__btn_primary}
+            >
+              Solicitar cotización
+            </Button>
+
+            <Button
               variant="outline"
               size="md"
               href="#proyectos"
-              className={styles.hero__btn}
+              className={styles.hero__btn_secondary}
             >
               Ver proyectos
             </Button>
-
-            <span className={cn(styles.hero__since, "body-sm")}>
-              Desde {siteConfig.foundingYear}
-            </span>
           </div>
         </div>
       </div>
