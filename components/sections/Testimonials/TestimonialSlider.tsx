@@ -24,8 +24,10 @@ export function TestimonialSlider({
   testimonials,
 }: TestimonialSliderProps) {
   const viewportRef = useRef<HTMLDivElement>(null);
+  const slideRefs = useRef<Array<HTMLDivElement | null>>([]);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [viewportHeight, setViewportHeight] = useState<number>();
   const prefersReducedMotion = useReducedMotion();
 
   const goToSlide = useCallback(
@@ -79,6 +81,29 @@ export function TestimonialSlider({
   }, [activeIndex]);
 
   useEffect(() => {
+    const viewport = viewportRef.current;
+    const activeSlide = slideRefs.current[activeIndex];
+    if (!viewport || !activeSlide) return;
+
+    const updateHeight = () => {
+      const borderHeight = viewport.offsetHeight - viewport.clientHeight;
+      const nextHeight = Math.ceil(
+        activeSlide.getBoundingClientRect().height + borderHeight
+      );
+      setViewportHeight(nextHeight);
+    };
+
+    const animationFrame = window.requestAnimationFrame(updateHeight);
+    const resizeObserver = new ResizeObserver(updateHeight);
+    resizeObserver.observe(activeSlide);
+
+    return () => {
+      window.cancelAnimationFrame(animationFrame);
+      resizeObserver.disconnect();
+    };
+  }, [activeIndex]);
+
+  useEffect(() => {
     if (prefersReducedMotion || isPaused || testimonials.length < 2) return;
 
     const timer = window.setTimeout(() => {
@@ -117,6 +142,7 @@ export function TestimonialSlider({
       <div
         ref={viewportRef}
         className={styles.slider__viewport}
+        style={viewportHeight ? { height: `${viewportHeight}px` } : undefined}
         role="region"
         aria-roledescription="carrusel"
         aria-label="Testimonios de clientes"
@@ -131,6 +157,9 @@ export function TestimonialSlider({
           {testimonials.map((testimonial, index) => (
             <div
               key={testimonial.id}
+              ref={(node) => {
+                slideRefs.current[index] = node;
+              }}
               className={styles.slider__slide}
               role="group"
               aria-roledescription="diapositiva"
