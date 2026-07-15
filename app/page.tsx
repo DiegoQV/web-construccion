@@ -1,7 +1,7 @@
 // =============================================================================
 // HOME PAGE
 // Composes all sections in the order defined by the UX Architecture.
-// Each section is a placeholder until its Sprint is implemented.
+// Composes the complete production sections.
 // =============================================================================
 
 import { Navbar } from "@/components/layout/Navbar";

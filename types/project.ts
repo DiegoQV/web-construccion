@@ -12,7 +12,6 @@ export interface Project {
   category: string;
   location: string;
   year: number;
-  size: string;
   description: string;
   highlight: string;
   featured: boolean;

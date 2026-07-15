@@ -13,7 +13,6 @@ export const projects: Project[] = [
     category: "Residencial",
     location: "Chachapoyas, Amazonas, Perú",
     year: 2023,
-    size: "220 m²",
     description:
       "Dos niveles, amplios paños acristalados y carpintería de madera a medida para una vivienda luminosa y duradera.",
     highlight: "Carpintería a medida",
@@ -32,7 +31,6 @@ export const projects: Project[] = [
     category: "Residencial",
     location: "Chachapoyas, Amazonas, Perú",
     year: 2024,
-    size: "240 m²",
     description:
       "Tres niveles resueltos con precisión, amplios paños acristalados y luz natural en los ambientes principales.",
     highlight: "Fachada y luz natural",
@@ -51,7 +49,6 @@ export const projects: Project[] = [
     category: "Residencial",
     location: "Chachapoyas, Amazonas, Perú",
     year: 2024,
-    size: "210 m²",
     description:
       "Una vivienda luminosa que aprovecha la pendiente con accesos claros y una fachada resistente de mantenimiento sencillo.",
     highlight: "Adaptación al terreno",
@@ -70,7 +67,6 @@ export const projects: Project[] = [
     category: "Interiores",
     location: "Chachapoyas, Amazonas, Perú",
     year: 2025,
-    size: "95 m²",
     description:
       "Una intervención que mejora circulación, iluminación y continuidad mediante acabados limpios y funcionales.",
     highlight: "Distribución e iluminación",
@@ -89,7 +85,6 @@ export const projects: Project[] = [
     category: "Residencial",
     location: "Chachapoyas, Amazonas, Perú",
     year: 2025,
-    size: "260 m²",
     description:
       "Frente renovado con balcones, carpintería en madera y ventanas amplias para una presencia limpia y luminosa.",
     highlight: "Fachada terminada",
@@ -108,7 +103,6 @@ export const projects: Project[] = [
     category: "Interiores",
     location: "Chachapoyas, Amazonas, Perú",
     year: 2025,
-    size: "85 m²",
     description:
       "Piso tipo madera, muros nivelados e iluminación empotrada para una circulación sobria y bien rematada.",
     highlight: "Pisos y muros",
@@ -127,7 +121,6 @@ export const projects: Project[] = [
     category: "Residencial",
     location: "Chachapoyas, Amazonas, Perú",
     year: 2025,
-    size: "120 m²",
     description:
       "Ambiente social abierto con cocina integrada, escalera interior y porcelanato brillante de gran formato.",
     highlight: "Porcelanato pulido",
@@ -146,7 +139,6 @@ export const projects: Project[] = [
     category: "Baños",
     location: "Chachapoyas, Amazonas, Perú",
     year: 2025,
-    size: "6 m²",
     description:
       "Revestimiento marmolizado, ducha en vidrio y mueble suspendido para un acabado compacto y elegante.",
     highlight: "Enchape marmolizado",

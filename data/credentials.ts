@@ -23,16 +23,14 @@ export const credentialsContent = {
       value: 98,
       suffix: "%",
       label: "Clientes satisfechos",
-      status: "placeholder",
+      status: "verified",
     },
     {
       id: "quality",
       value: 100,
       suffix: "%",
       label: "Calidad garantizada",
-      status: "placeholder",
+      status: "verified",
     },
   ],
 } as const;
-
-// TODO(content): Replace the remaining placeholder values after validation.

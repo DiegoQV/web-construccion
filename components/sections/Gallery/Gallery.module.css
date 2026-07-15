@@ -41,6 +41,14 @@
   display: none;
 }
 
+.gallery__mobile_arrows {
+  display: none;
+}
+
+.gallery__viewport {
+  position: relative;
+}
+
 .gallery__composition {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -100,6 +108,36 @@
   grid-column: 4 / 10;
   grid-row: 4;
   margin-top: calc(-1 * var(--space-6));
+}
+
+.gallery__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8);
+  margin-top: var(--space-20);
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.gallery__cta_copy {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: var(--space-4);
+  color: var(--color-text-secondary);
+  font-family: var(--font-display);
+  font-size: var(--font-size-xl);
+}
+
+.gallery__cta_rule {
+  width: 40px;
+  height: 1px;
+  background-color: var(--color-brand-accent);
+}
+
+.gallery__cta {
+  flex: 0 0 auto;
 }
 
 @media (max-width: 1023px) {
@@ -229,6 +267,79 @@
     display: none;
   }
 
+  .gallery__footer {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+    margin-top: var(--space-6);
+    padding-top: var(--space-6);
+  }
+
+  .gallery__mobile_arrows {
+    display: block;
+    pointer-events: none;
+  }
+
+  .gallery__arrow {
+    position: absolute;
+    top: clamp(112px, 37.5vw, 288px);
+    z-index: var(--z-raised);
+    display: flex;
+    width: 44px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.42);
+    border-radius: var(--radius-full);
+    background: rgba(20, 16, 11, 0.58);
+    color: var(--color-text-inverse);
+    box-shadow: 0 5px 16px rgba(0, 0, 0, 0.18);
+    opacity: 0.82;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    pointer-events: auto;
+    transform: translateY(-50%);
+    cursor: pointer;
+    transition:
+      opacity var(--transition-color),
+      background-color var(--transition-color),
+      transform var(--duration-fast) var(--ease-out);
+  }
+
+  .gallery__arrow--previous {
+    left: -8px;
+  }
+
+  .gallery__arrow--next {
+    right: -8px;
+  }
+
+  .gallery__arrow:active {
+    opacity: 1;
+    background: rgba(20, 16, 11, 0.78);
+    transform: translateY(-50%) scale(0.96);
+  }
+
+  .gallery__arrow:focus-visible {
+    outline: 3px solid var(--color-brand-accent);
+    outline-offset: 3px;
+  }
+
+  .gallery__cta_copy {
+    font-size: var(--font-size-lg);
+  }
+
+  .gallery__cta_rule {
+    width: 32px;
+  }
+
+  .gallery__cta {
+    width: 100%;
+    padding-inline: var(--space-4) !important;
+    font-size: var(--font-size-xs);
+  }
+
   .gallery__item,
   .gallery__item--featured,
   .gallery__item--portrait,
@@ -245,4 +356,10 @@
     scroll-snap-stop: always;
   }
 
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery__arrow {
+    transition: none;
+  }
 }

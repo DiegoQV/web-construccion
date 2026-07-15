@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import heroImage from "@/public/images/hero/residencia-oficial.png";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { siteConfig } from "@/data/site-config";
 import { Button } from "@/components/ui/Button";
@@ -14,18 +15,41 @@ import styles from "./Hero.module.css";
  *
  * Fotografía: casa-nocturna.png (Fotografía 1 — aprobada)
  * Overlay: mínimo — la foto tiene fondo oscuro natural
- * Efecto: Ken Burns (zoom lento) + parallax en scroll
+ * Efecto: acercamiento progresivo + parallax suave al hacer scroll en escritorio
  *
  * Screen Specification: Sección 01
  */
 export function Hero() {
   const prefersReduced = useReducedMotion();
   const [scrollY, setScrollY] = useState(0);
+  const [isHeroReady, setIsHeroReady] = useState(false);
   const heroRef = useRef<HTMLElement>(null);
+  const heroStartTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const startHeroSequence = useCallback(() => {
+    if (heroStartTimerRef.current || isHeroReady) return;
+
+    heroStartTimerRef.current = setTimeout(() => {
+      setIsHeroReady(true);
+      heroStartTimerRef.current = null;
+    }, 100);
+  }, [isHeroReady]);
+
+  useEffect(() => {
+    const fallbackTimer = setTimeout(startHeroSequence, 900);
+
+    return () => {
+      clearTimeout(fallbackTimer);
+      if (heroStartTimerRef.current) {
+        clearTimeout(heroStartTimerRef.current);
+      }
+    };
+  }, [startHeroSequence]);
 
   // Parallax en scroll
   useEffect(() => {
     if (prefersReduced) return;
+    if (!window.matchMedia("(min-width: 1024px)").matches) return;
 
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -40,15 +64,15 @@ export function Hero() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [prefersReduced]);
 
-  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
-  const parallaxOffset = prefersReduced
-    ? 0
-    : scrollY * (isMobile ? 0.12 : 0.4);
+  const parallaxOffset = prefersReduced ? 0 : scrollY * 0.3;
 
   return (
     <section
       ref={heroRef}
-      className={styles.hero}
+      className={cn(
+        styles.hero,
+        isHeroReady && styles["hero--ready"]
+      )}
       aria-label="Maestro Constructor Premium"
     >
       {/* ── Fotografía de fondo ──────────────────────────── */}
@@ -59,21 +83,22 @@ export function Hero() {
         )}
         style={
           !prefersReduced
-            ? { transform: `translateY(${parallaxOffset}px)` }
+            ? {
+                "--hero-parallax-offset": `${parallaxOffset}px`,
+              } as React.CSSProperties
             : undefined
         }
       >
         <Image
-          src="/images/hero/residencia-oficial.png"
+          src={heroImage}
           alt="Vivienda residencial contemporánea de dos niveles con volúmenes definidos y carpintería de madera"
           fill
           preload
+          placeholder="blur"
           quality={75}
           sizes="100vw"
-          className={cn(
-            styles.hero__image,
-            !prefersReduced && styles["hero__image--kenburns"]
-          )}
+          className={styles.hero__image}
+          onLoad={startHeroSequence}
         />
       </div>
 

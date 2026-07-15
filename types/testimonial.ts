@@ -1,4 +1,4 @@
-export type TestimonialStatus = "placeholder" | "verified";
+export type TestimonialStatus = "verified";
 
 export interface Testimonial {
   id: string;

@@ -1,7 +1,11 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { projects, featuredProject } from "@/data/projects";
+import { siteConfig } from "@/data/site-config";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { Button } from "@/components/ui/Button";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { ProjectCard, type ProjectCardVariant } from "./ProjectCard";
@@ -24,6 +28,7 @@ const getProjectVariant = (index: number) => variants[index % variants.length];
 export function Gallery() {
   const trackRef = useRef<HTMLDivElement>(null);
   const [activeProject, setActiveProject] = useState(0);
+  const prefersReducedMotion = useReducedMotion();
 
   const updateActiveProject = () => {
     const track = trackRef.current;
@@ -45,7 +50,18 @@ export function Gallery() {
 
   const goToProject = (index: number) => {
     const item = trackRef.current?.children[index] as HTMLElement | undefined;
-    item?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
+    item?.scrollIntoView({
+      behavior: prefersReducedMotion ? "auto" : "smooth",
+      block: "nearest",
+      inline: "start",
+    });
+  };
+
+  const goToAdjacentProject = (direction: -1 | 1) => {
+    const nextIndex =
+      (activeProject + direction + orderedProjects.length) %
+      orderedProjects.length;
+    goToProject(nextIndex);
   };
 
   return (
@@ -97,28 +113,70 @@ export function Gallery() {
           ))}
         </div>
 
-        <div
-          ref={trackRef}
-          className={styles.gallery__composition}
-          onScroll={updateActiveProject}
-          aria-label="Proyectos construidos"
-        >
-          {orderedProjects.map((project, index) => (
-            <ScrollReveal
-              key={project.id}
-              delay={index * 90}
-              threshold={0.08}
-              className={`${styles.gallery__item} ${styles[`gallery__item--${getProjectVariant(index)}`]}`}
+        <div className={styles.gallery__viewport}>
+          <div
+            ref={trackRef}
+            className={styles.gallery__composition}
+            onScroll={updateActiveProject}
+            aria-label="Proyectos construidos"
+          >
+            {orderedProjects.map((project, index) => (
+              <ScrollReveal
+                key={project.id}
+                delay={index * 90}
+                threshold={0.08}
+                className={`${styles.gallery__item} ${styles[`gallery__item--${getProjectVariant(index)}`]}`}
+              >
+                <ProjectCard
+                  project={project}
+                  index={index}
+                  variant={getProjectVariant(index)}
+                  isActive={index === activeProject}
+                />
+              </ScrollReveal>
+            ))}
+          </div>
+
+          <div
+            className={styles.gallery__mobile_arrows}
+            aria-label="Navegar por los proyectos"
+          >
+            <button
+              type="button"
+              className={`${styles.gallery__arrow} ${styles["gallery__arrow--previous"]}`}
+              aria-label="Ver proyecto anterior"
+              onClick={() => goToAdjacentProject(-1)}
             >
-              <ProjectCard
-                project={project}
-                index={index}
-                variant={getProjectVariant(index)}
-                isActive={index === activeProject}
-              />
-            </ScrollReveal>
-          ))}
+              <ChevronLeft aria-hidden="true" size={20} strokeWidth={1.5} />
+            </button>
+            <button
+              type="button"
+              className={`${styles.gallery__arrow} ${styles["gallery__arrow--next"]}`}
+              aria-label="Ver proyecto siguiente"
+              onClick={() => goToAdjacentProject(1)}
+            >
+              <ChevronRight aria-hidden="true" size={20} strokeWidth={1.5} />
+            </button>
+          </div>
         </div>
+
+        <footer className={styles.gallery__footer}>
+          <div className={styles.gallery__cta_copy}>
+            <span className={styles.gallery__cta_rule} aria-hidden="true" />
+            <p>¿Tienes una vivienda en mente?</p>
+          </div>
+
+          <Button
+            variant="accent"
+            size="md"
+            href={siteConfig.whatsappHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.gallery__cta}
+          >
+            Quiero construir algo similar
+          </Button>
+        </footer>
       </div>
     </section>
   );

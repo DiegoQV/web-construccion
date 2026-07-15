@@ -13,7 +13,7 @@
   min-height: 700px;
   max-height: 1000px;
   overflow: hidden;
-  background-color: var(--color-bg-inverse); /* placeholder hasta que cargue la foto */
+  background-color: var(--color-bg-inverse); /* Fondo estable mientras carga la foto */
 }
 
 @media (max-width: 767px) {
@@ -60,7 +60,7 @@
 }
 
 .hero__media--parallax {
-  /* el transform se aplica via inline style */
+  transform: translateY(var(--hero-parallax-offset, 0));
 }
 
 @media (max-width: 767px) {
@@ -89,8 +89,10 @@
   }
 
   .hero__media--parallax {
-    will-change: transform;
+    transform: none;
+    will-change: auto;
   }
+
 }
 
 @media (min-width: 1024px) {
@@ -106,17 +108,24 @@
   height: 100%;
   object-fit: cover;
   object-position: center 48%;
-  opacity: 1;
+  transform: scale(1);
+  transform-origin: center 48%;
+  will-change: transform;
+}
+
+.hero--ready .hero__image {
+  animation: heroZoomIn 18000ms var(--ease-out) forwards;
+}
+
+@keyframes heroZoomIn {
+  from { transform: scale(1); }
+  to { transform: scale(1.045); }
 }
 
 @media (max-width: 767px) {
   .hero__image {
     object-fit: cover;
     object-position: 52% center;
-    opacity: 1;
-  }
-
-  .hero__image--kenburns {
     transform-origin: 52% center;
   }
 }
@@ -124,23 +133,14 @@
 @media (min-width: 1024px) {
   .hero__image {
     object-position: center 44%;
+    transform-origin: center 44%;
   }
 }
 
-/* Ken Burns — movimiento de entrada apenas perceptible */
-.hero__image--kenburns {
-  animation: kenBurns 20000ms var(--ease-out) forwards;
-  transform-origin: center 40%;
-}
-
-@keyframes kenBurns {
-  from { transform: scale(1.035); }
-  to   { transform: scale(1.00); }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .hero__image--kenburns {
+  .hero--ready .hero__image {
     animation: none;
+    transform: none;
   }
 }
 
@@ -314,8 +314,12 @@
 }
 
 /* Entrada editorial breve y escalonada. */
-.hero__text > * {
+.hero__text > :not(.hero__goldline) {
   opacity: 0;
+  transform: translateY(var(--hero-enter-distance, 18px));
+}
+
+.hero--ready .hero__text > :not(.hero__goldline) {
   animation: heroContentIn 720ms var(--ease-out) var(--delay, 0ms) both;
 }
 
@@ -332,7 +336,7 @@
 }
 
 @media (max-width: 767px) {
-  .hero__text > * {
+  .hero--ready .hero__text > :not(.hero__goldline) {
     animation-duration: 720ms;
   }
 
@@ -354,7 +358,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero__text > * {
+  .hero__text > :not(.hero__goldline) {
     opacity: 1;
     transform: none;
     animation: none;
@@ -429,10 +433,12 @@
   height: 1px;
   margin-bottom: var(--space-6);
   opacity: 1;
-  animation: scaleXIn 500ms var(--ease-decelerate) forwards;
-  animation-delay: var(--delay, 100ms);
   transform: scaleX(0);
   /* Entrada breve del acento editorial. */
+}
+
+.hero--ready .hero__goldline {
+  animation: scaleXIn 500ms var(--ease-decelerate) var(--delay, 100ms) forwards;
 }
 
 @media (max-width: 767px) {
@@ -693,11 +699,4 @@
   30%  { opacity: 1; }
   70%  { opacity: 1; }
   100% { transform: translateY(24px); opacity: 0; }
-}
-
-@media (max-width: 767px) {
-  .hero__image--kenburns {
-    transform-origin: 52% center;
-  }
-
 }
