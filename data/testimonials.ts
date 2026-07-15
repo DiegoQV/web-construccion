@@ -10,8 +10,9 @@ export const testimonials: Testimonial[] = [
     id: "vivienda-moderna-greysi-mirton",
     quote:
       "En nombre de Mirton y en el mío, queremos expresarle nuestro más profundo agradecimiento por el increíble trabajo en la construcción y acabados de nuestra casa moderna. El resultado ha quedado verdaderamente espectacular, tal como lo soñamos. Somos conscientes de que usted no solo levantó estructuras, paredes y colocó porcelanatos, sino que imprimió su paciencia, esmero y una absoluta dedicación en cada pequeño detalle. Gracias por hacer suyo este proyecto, por transmitirnos esa tranquilidad que tanto necesitábamos durante el proceso y por materializar nuestro hogar con tanta excelencia. Estaremos por siempre agradecidos con usted y con todo su gran equipo de trabajo.",
-    clientName: "Greysi y Mirton",
+    clientName: "Greysi Hernandez",
     projectType: "Construcción y acabados de vivienda moderna",
+    location: "Chachapoyas · Amazonas · Perú",
     rating: 5,
     status: "verified",
   },

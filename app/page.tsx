@@ -16,10 +16,75 @@ import { Materials } from "@/components/sections/Materials";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { FAQ } from "@/components/sections/FAQ";
 import { CTAFinal } from "@/components/sections/CTAFinal";
+import { faqItems } from "@/data/faq";
+import { siteConfig } from "@/data/site-config";
+
+const businessJsonLd = {
+  "@context": "https://schema.org",
+  "@type": ["LocalBusiness", "HomeAndConstructionBusiness"],
+  "@id": `${siteConfig.siteUrl}/#business`,
+  name: `${siteConfig.ownerName} · ${siteConfig.businessName}`,
+  url: siteConfig.siteUrl,
+  image: new URL(siteConfig.ogImage, siteConfig.siteUrl).toString(),
+  description: siteConfig.metaDescription,
+  foundingDate: String(siteConfig.foundingYear),
+  telephone: siteConfig.phoneHref.replace("tel:", ""),
+  priceRange: "$$",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: siteConfig.city,
+    addressRegion: siteConfig.region,
+    addressCountry: "PE",
+  },
+  areaServed: {
+    "@type": "AdministrativeArea",
+    name: `${siteConfig.city}, ${siteConfig.region}, ${siteConfig.country}`,
+  },
+  founder: {
+    "@type": "Person",
+    name: siteConfig.ownerName,
+  },
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Servicios de construcción residencial",
+    itemListElement: [
+      "Construcción de viviendas",
+      "Acabados residenciales",
+      "Supervisión de obra",
+      "Remodelación de viviendas",
+    ].map((name) => ({
+      "@type": "Offer",
+      itemOffered: { "@type": "Service", name },
+    })),
+  },
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqItems.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.answer,
+    },
+  })),
+};
 
 export default function HomePage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([businessJsonLd, faqJsonLd]).replace(
+            /</g,
+            "\\u003c",
+          ),
+        }}
+      />
+
       {/* 00 — Navigation */}
       <Navbar />
 

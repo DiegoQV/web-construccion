@@ -53,7 +53,7 @@ export const siteConfig = {
   /** Used as <title> template: "Page | siteName" */
   siteName: "Maestro Constructor — Viviendas de Alta Calidad",
   metaDescription:
-    "Construcción de viviendas residenciales de alta calidad en Perú. Más de 15 años de experiencia y 20 proyectos terminados.",
+    "Construcción y acabados de viviendas en Chachapoyas, Amazonas. Dilbert Tuesta cuenta con más de 15 años de experiencia y 20 proyectos terminados.",
   /** Path to OG image in /public */
   ogImage: "/images/hero/casa-nocturna.png",
 

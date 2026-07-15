@@ -30,14 +30,13 @@ export function Materials() {
           aria-label="Calidad y ejecución en obra"
         >
           {materialsContent.features.map((feature, index) => (
-            <ScrollReveal
-              key={feature.id}
-              delay={index * 100}
-              threshold={0.08}
-              className={styles.materials__feature}
-            >
-              <MaterialFeature feature={feature} featured={index === 0} />
-            </ScrollReveal>
+            <div key={feature.id} className={styles.materials__feature}>
+              <MaterialFeature
+                feature={feature}
+                featured={index === 0}
+                index={index}
+              />
+            </div>
           ))}
         </div>
       </div>

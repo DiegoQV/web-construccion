@@ -32,6 +32,12 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.businessName}`,
   },
   description: siteConfig.metaDescription,
+  alternates: {
+    canonical: "/",
+    languages: {
+      "es-PE": "/",
+    },
+  },
   keywords: [
     "constructor viviendas",
     "maestro de obra",
@@ -42,6 +48,8 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: siteConfig.ownerName }],
   creator: siteConfig.ownerName,
+  publisher: siteConfig.businessName,
+  category: "construcción residencial",
   robots: {
     index: true,
     follow: true,
@@ -52,7 +60,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    locale: "es_EC",
+    locale: "es_PE",
     url: siteConfig.siteUrl,
     siteName: siteConfig.siteName,
     title: siteConfig.siteName,

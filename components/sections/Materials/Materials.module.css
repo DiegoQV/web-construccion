@@ -51,6 +51,8 @@
   overflow: hidden;
   height: 328px;
   background-color: var(--color-state-hover-dark);
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path 850ms var(--ease-out) var(--reveal-delay, 0ms);
 }
 
 .materials__feature:first-child .feature__media {
@@ -59,7 +61,8 @@
 
 .feature__image {
   object-fit: cover;
-  transition: transform var(--duration-slower) var(--ease-out);
+  transform: scale(1.035);
+  transition: transform 1100ms var(--ease-out) var(--reveal-delay, 0ms);
 }
 
 .materials__feature:first-child .feature__image {
@@ -76,6 +79,24 @@
   gap: var(--space-5);
   align-items: baseline;
   padding-top: var(--space-5);
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 500ms var(--ease-out) calc(var(--reveal-delay, 0ms) + 520ms),
+    transform 500ms var(--ease-out) calc(var(--reveal-delay, 0ms) + 520ms);
+}
+
+.feature--revealed .feature__media {
+  clip-path: inset(0);
+}
+
+.feature--revealed .feature__image {
+  transform: scale(1);
+}
+
+.feature--revealed .feature__caption {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .feature__caption span {
@@ -188,7 +209,19 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .feature__media {
+    clip-path: none;
+    transition: none;
+  }
+
   .feature__image {
+    transform: none;
+    transition: none;
+  }
+
+  .feature__caption {
+    opacity: 1;
+    transform: none;
     transition: none;
   }
 
