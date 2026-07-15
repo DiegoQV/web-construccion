@@ -60,7 +60,6 @@ export const siteConfig = {
   // ── Navigation ───────────────────────────────────────────────────────────
   navItems: [
     { label: "Proyectos", href: "#proyectos" },
-    { label: "Nosotros", href: "#maestro" },
     { label: "Proceso", href: "#proceso" },
     { label: "Contacto", href: "#contacto" },
   ],
