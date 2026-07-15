@@ -12,6 +12,7 @@ import {
 } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import type { Testimonial } from "@/types/testimonial";
+import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { TestimonialCard } from "./TestimonialCard";
 import styles from "./Testimonials.module.css";
@@ -29,6 +30,11 @@ export function TestimonialSlider({
   const [isPaused, setIsPaused] = useState(false);
   const [viewportHeight, setViewportHeight] = useState<number>();
   const prefersReducedMotion = useReducedMotion();
+  const [sliderRef, isSliderVisible] =
+    useIntersectionObserver<HTMLDivElement>({
+      threshold: 0.6,
+      once: false,
+    });
 
   const goToSlide = useCallback(
     (requestedIndex: number) => {
@@ -104,7 +110,14 @@ export function TestimonialSlider({
   }, [activeIndex]);
 
   useEffect(() => {
-    if (prefersReducedMotion || isPaused || testimonials.length < 2) return;
+    if (
+      prefersReducedMotion ||
+      isPaused ||
+      !isSliderVisible ||
+      testimonials.length < 2
+    ) {
+      return;
+    }
 
     const timer = window.setTimeout(() => {
       goToSlide(activeIndex + 1);
@@ -114,6 +127,7 @@ export function TestimonialSlider({
   }, [
     activeIndex,
     goToSlide,
+    isSliderVisible,
     isPaused,
     prefersReducedMotion,
     testimonials.length,
@@ -133,6 +147,7 @@ export function TestimonialSlider({
 
   return (
     <div
+      ref={sliderRef}
       className={styles.slider}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
