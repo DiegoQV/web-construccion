@@ -5,7 +5,7 @@ export interface Testimonial {
   quote: string;
   clientName: string;
   projectType: string;
-  location: string;
-  rating: 1 | 2 | 3 | 4 | 5;
+  location?: string;
+  rating?: 1 | 2 | 3 | 4 | 5;
   status: TestimonialStatus;
 }

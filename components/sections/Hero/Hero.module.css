@@ -301,13 +301,10 @@
 
 @media (max-width: 767px) {
   .hero__text {
-    --hero-enter-distance: 10px;
+    --hero-enter-distance: 14px;
     max-width: none;
   }
 
-  .hero__text > * {
-    animation-duration: 560ms;
-  }
 }
 
 @media (min-width: 1024px) {
@@ -319,7 +316,7 @@
 /* Entrada editorial breve y escalonada. */
 .hero__text > * {
   opacity: 0;
-  animation: heroContentIn 720ms var(--ease-out) var(--delay, 0ms) forwards;
+  animation: heroContentIn 720ms var(--ease-out) var(--delay, 0ms) both;
 }
 
 @keyframes heroContentIn {
@@ -331,6 +328,28 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@media (max-width: 767px) {
+  .hero__text > * {
+    animation-duration: 720ms;
+  }
+
+  .hero__overline {
+    animation-delay: 100ms;
+  }
+
+  .hero__title {
+    animation-delay: 380ms;
+  }
+
+  .hero__subtitle {
+    animation-delay: 680ms;
+  }
+
+  .hero__actions {
+    animation-delay: 980ms;
   }
 }
 
