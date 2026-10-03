@@ -76,10 +76,6 @@ export function CTAFinal() {
             {siteConfig.region}, {siteConfig.country}
           </address>
 
-          <p className={styles.contact__owner}>
-            <span>{siteConfig.ownerName}</span>
-            Maestro Constructor
-          </p>
         </ScrollReveal>
       </div>
     </section>

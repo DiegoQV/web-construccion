@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import heroImage from "@/public/images/hero/residencia-oficial.png";
-import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { siteConfig } from "@/data/site-config";
 import { Button } from "@/components/ui/Button";
 import { GoldLine } from "@/components/ui/GoldLine";
@@ -18,7 +17,6 @@ import styles from "./Hero.module.css";
  * Screen Specification: Sección 01
  */
 export function Hero() {
-  const prefersReduced = useReducedMotion();
   const [isHeroReady, setIsHeroReady] = useState(false);
   const heroStartTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -139,12 +137,10 @@ export function Hero() {
       </div>
 
       {/* ── Scroll indicator ─────────────────────────────── */}
-      {!prefersReduced && (
-        <div className={styles.hero__scroll} aria-hidden="true">
-          <span className={styles.hero__scroll_line} />
-          <span className={styles.hero__scroll_dot} />
-        </div>
-      )}
+      <div className={styles.hero__scroll} aria-hidden="true">
+        <span className={styles.hero__scroll_label}>Scroll</span>
+        <span className={styles.hero__scroll_line} />
+      </div>
     </section>
   );
 }

@@ -18,10 +18,10 @@
 
 @media (max-width: 767px) {
   .hero {
-    height: 100vh;
-    height: 100svh;
-    min-height: 680px;
-    max-height: 900px;
+    height: calc(100vh - 40px);
+    height: calc(100svh - 40px);
+    min-height: 640px;
+    max-height: 860px;
   }
 
   .hero::after {
@@ -620,15 +620,15 @@
 
 .hero__scroll {
   position: absolute;
-  bottom: var(--space-8);
-  right: var(--space-20);
+  bottom: var(--space-6);
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-2);
-  opacity: 0;
-  animation: fadeIn 600ms var(--ease-out) 1200ms forwards;
+  gap: 12px;
+  pointer-events: none;
 }
 
 @media (max-width: 1023px) {
@@ -637,34 +637,36 @@
   }
 }
 
-@media (min-width: 1024px) {
-  .hero__scroll {
-    right: max(
-      var(--space-20),
-      calc((100vw - var(--container-2xl)) / 2 + var(--space-20))
-    );
-  }
+.hero__scroll_label {
+  color: var(--color-text-inverse);
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.16em;
+  line-height: 1;
+  text-transform: uppercase;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.65);
 }
 
 .hero__scroll_line {
   display: block;
   width: 1px;
-  height: 48px;
-  background-color: rgba(245, 242, 238, 0.30);
+  height: 40px;
+  background-color: rgba(245, 242, 238, 0.75);
+  transform-origin: top;
 }
 
-.hero__scroll_dot {
-  display: block;
-  width: 4px;
-  height: 4px;
-  border-radius: var(--radius-full);
-  background-color: rgba(245, 242, 238, 0.50);
-  animation: scrollIndicator 1500ms var(--ease-in-out) 1500ms infinite;
+.hero--ready .hero__scroll_line {
+  animation: scrollIndicator 2200ms var(--ease-in-out) 1200ms 2;
 }
 
 @keyframes scrollIndicator {
-  0%   { transform: translateY(-24px); opacity: 0; }
-  30%  { opacity: 1; }
-  70%  { opacity: 1; }
-  100% { transform: translateY(24px); opacity: 0; }
+  0%, 100% { transform: scaleY(1); opacity: 1; }
+  50% { transform: scaleY(0.65); opacity: 0.5; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero--ready .hero__scroll_line {
+    animation: none;
+  }
 }
