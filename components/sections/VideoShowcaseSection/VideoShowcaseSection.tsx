@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
@@ -143,6 +144,18 @@ export function VideoShowcaseSection() {
                     <source src={video.src} type="video/mp4" />
                     Tu navegador no puede reproducir este video.
                   </video>
+
+                  {!startedVideos.includes(video.id) && (
+                    <div className={styles.showcase__poster} aria-hidden="true">
+                      <Image
+                        src={video.poster}
+                        alt=""
+                        fill
+                        sizes="(max-width: 767px) 82vw, 33vw"
+                        className={styles.showcase__poster_image}
+                      />
+                    </div>
+                  )}
 
                   {!startedVideos.includes(video.id) && (
                     <button

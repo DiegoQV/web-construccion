@@ -77,7 +77,7 @@ export function Hero() {
             className={cn(styles.hero__overline, "overline")}
             style={{ "--delay": "0ms" } as React.CSSProperties}
           >
-            {siteConfig.specialty} · {siteConfig.city}
+            Construcción de alta calidad
           </p>
 
           {/* Línea dorada */}

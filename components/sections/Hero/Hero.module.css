@@ -430,7 +430,7 @@
 
 /* Titular */
 .hero__title {
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--font-weight-semibold);
   color: var(--color-text-inverse);
   text-shadow: var(--shadow-text);
   max-width: 590px;
@@ -447,7 +447,7 @@
     order: 2;
     max-width: 330px;
     font-size: clamp(30px, 8.9vw, 35px);
-    font-weight: var(--font-weight-medium);
+    font-weight: var(--font-weight-semibold);
     line-height: 1.08;
     letter-spacing: 0.01em;
     max-width: none;
@@ -464,7 +464,7 @@
     max-width: 780px;
     margin-bottom: var(--space-5);
     font-size: clamp(64px, 4.5vw, 86px);
-    font-weight: var(--font-weight-medium);
+    font-weight: var(--font-weight-semibold);
     line-height: 1;
     letter-spacing: 0.015em;
     text-shadow:

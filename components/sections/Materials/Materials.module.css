@@ -1,4 +1,6 @@
 .materials {
+  --color-text-muted: var(--color-sand-dark);
+  --color-text-accent: var(--color-bronze-light);
   overflow: hidden;
   color: var(--color-text-inverse);
   background-color: var(--color-bg-inverse);

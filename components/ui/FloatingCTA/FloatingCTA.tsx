@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import { siteConfig } from "@/data/site-config";
 import styles from "./FloatingCTA.module.css";
 
@@ -29,10 +32,69 @@ function WhatsAppLogo() {
  * Circular WhatsApp logo, available on mobile and desktop.
  */
 export function FloatingCTA() {
+  const buttonRef = useRef<HTMLAnchorElement>(null);
+  const [isObstructing, setIsObstructing] = useState(false);
+
+  useEffect(() => {
+    const mobile = window.matchMedia("(max-width: 767px)");
+    let frame: number | null = null;
+
+    const checkOverlap = () => {
+      frame = null;
+      const button = buttonRef.current;
+      if (!button) return;
+      if (!mobile.matches || document.activeElement === button) {
+        setIsObstructing(false);
+        return;
+      }
+
+      // Keep the preferred position; yield space to controls underneath it.
+      const floating = button.getBoundingClientRect();
+      const controls = document.querySelectorAll<HTMLElement>(
+        "main a, main button, main summary, main video, footer a, footer button"
+      );
+      const overlaps = Array.from(controls).some((control) => {
+        if (control === button || control.closest('[aria-hidden="true"]')) return false;
+        if (!control.getClientRects().length) return false;
+        const rect = control.getBoundingClientRect();
+        return rect.width > 0 && rect.height > 0 &&
+          rect.left < floating.right + 8 && rect.right > floating.left - 8 &&
+          rect.top < floating.bottom + 8 && rect.bottom > floating.top - 8;
+      });
+      setIsObstructing(overlaps);
+    };
+
+    const scheduleCheck = () => {
+      if (frame === null) frame = requestAnimationFrame(checkOverlap);
+    };
+
+    const resizeObserver = new ResizeObserver(scheduleCheck);
+    resizeObserver.observe(document.body);
+    window.addEventListener("scroll", scheduleCheck, { passive: true, capture: true });
+    window.addEventListener("resize", scheduleCheck);
+    document.addEventListener("focusin", scheduleCheck);
+    document.addEventListener("focusout", scheduleCheck);
+    mobile.addEventListener("change", scheduleCheck);
+    scheduleCheck();
+
+    return () => {
+      if (frame !== null) cancelAnimationFrame(frame);
+      resizeObserver.disconnect();
+      window.removeEventListener("scroll", scheduleCheck, true);
+      window.removeEventListener("resize", scheduleCheck);
+      document.removeEventListener("focusin", scheduleCheck);
+      document.removeEventListener("focusout", scheduleCheck);
+      mobile.removeEventListener("change", scheduleCheck);
+    };
+  }, []);
+
   return (
     <a
+      ref={buttonRef}
       href={siteConfig.whatsappHref}
-      className={styles.button}
+      className={`${styles.button} ${isObstructing ? styles["button--hidden"] : ""}`}
+      aria-hidden={isObstructing || undefined}
+      tabIndex={isObstructing ? -1 : undefined}
       title="Escribir por WhatsApp"
       aria-label={`Contactar por WhatsApp: ${siteConfig.phoneDisplay}`}
       target="_blank"

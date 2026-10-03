@@ -127,6 +127,18 @@
   object-fit: contain;
 }
 
+.showcase__poster {
+  position: absolute;
+  inset: 6px;
+  overflow: hidden;
+  border-radius: 9px;
+  pointer-events: none;
+}
+
+.showcase__poster_image {
+  object-fit: cover;
+}
+
 .showcase__caption {
   display: flex;
   align-items: center;
@@ -243,6 +255,11 @@
   }
 
   .showcase__video {
+    border-radius: 11px;
+  }
+
+  .showcase__poster {
+    inset: 9px;
     border-radius: 11px;
   }
 
