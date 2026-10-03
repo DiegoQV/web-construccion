@@ -11,18 +11,24 @@ const showcaseVideos = [
   {
     id: "recorrido-01",
     src: "/videos/constructora_presentacion_v2_con_musica.mp4",
+    poster: "/images/gallery/sala-cocina-piso-pulido.webp",
+    duration: "0:35",
     label: "Recorrido interior",
     ariaLabel: "Recorrido por el interior de una vivienda construida",
   },
   {
     id: "recorrido-02",
     src: "/videos/recorrido-obra-02.mp4",
+    poster: "/images/gallery/interior-residencial-acabados.jpg",
+    duration: "0:37",
     label: "Detalles de obra",
     ariaLabel: "Recorrido por los detalles de una obra ejecutada",
   },
   {
     id: "recorrido-03",
     src: "/videos/recorrido-obra-03.mp4",
+    poster: "/images/gallery/fachada-residencial-tres-niveles.webp",
+    duration: "0:33",
     label: "Proyecto residencial",
     ariaLabel: "Recorrido por un proyecto residencial ejecutado",
   },
@@ -31,6 +37,7 @@ const showcaseVideos = [
 export function VideoShowcaseSection() {
   const videoRefs = useRef<Array<HTMLVideoElement | null>>([]);
   const [soundEnabledId, setSoundEnabledId] = useState<string | null>(null);
+  const [startedVideos, setStartedVideos] = useState<string[]>([]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -80,6 +87,7 @@ export function VideoShowcaseSection() {
   };
 
   const handlePlay = (videoId: string, videoIndex: number) => {
+    setStartedVideos(current => current.includes(videoId) ? current : [...current, videoId]);
     pauseOtherVideos(videoIndex);
     const video = videoRefs.current[videoIndex];
     setSoundEnabledId(video && !video.muted ? videoId : null);
@@ -127,7 +135,8 @@ export function VideoShowcaseSection() {
                     controls
                     muted
                     playsInline
-                    preload="metadata"
+                    preload="none"
+                    poster={video.poster}
                     onPlay={() => handlePlay(video.id, index)}
                     aria-label={video.ariaLabel}
                   >
@@ -135,12 +144,12 @@ export function VideoShowcaseSection() {
                     Tu navegador no puede reproducir este video.
                   </video>
 
-                  {soundEnabledId !== video.id && (
+                  {!startedVideos.includes(video.id) && (
                     <button
                       type="button"
                       className={styles.showcase__sound}
                       onClick={() => enableSound(video.id, index)}
-                      aria-label={`Activar ${video.label.toLowerCase()} con sonido`}
+                      aria-label={`Reproducir ${video.label.toLowerCase()}, duración ${video.duration}`}
                     >
                       <svg
                         viewBox="0 0 24 24"
@@ -153,11 +162,9 @@ export function VideoShowcaseSection() {
                         strokeLinejoin="round"
                         aria-hidden="true"
                       >
-                        <path d="M11 5 6 9H3v6h3l5 4V5Z" />
-                        <path d="M15.5 8.5a5 5 0 0 1 0 7" />
-                        <path d="M18 6a8.5 8.5 0 0 1 0 12" />
+                        <path d="m8 5 11 7-11 7V5Z" />
                       </svg>
-                      Activar sonido
+                      Ver recorrido
                     </button>
                   )}
                 </div>
@@ -165,7 +172,9 @@ export function VideoShowcaseSection() {
                 <p className={styles.showcase__caption}>
                   <span>{String(index + 1).padStart(2, "0")}</span>
                   {video.label}
+                  <span className={styles.showcase__duration}>{video.duration}</span>
                 </p>
+                {startedVideos.includes(video.id) && soundEnabledId !== video.id && <button type="button" className={styles.showcase__unmute} onClick={() => enableSound(video.id, index)}>Activar sonido</button>}
               </article>
             </ScrollReveal>
           ))}

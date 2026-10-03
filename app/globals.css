@@ -22,8 +22,14 @@
    ============================================================================= */
 
 html {
+  scroll-padding-top: 96px;
   font-size: 16px;
   height: 100%;
+}
+
+dialog::backdrop {
+  background: rgba(13, 13, 11, 0.78);
+  backdrop-filter: blur(5px);
 }
 
 body {

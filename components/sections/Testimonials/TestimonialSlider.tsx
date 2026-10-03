@@ -27,7 +27,11 @@ export function TestimonialSlider({
   const viewportRef = useRef<HTMLDivElement>(null);
   const slideRefs = useRef<Array<HTMLDivElement | null>>([]);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [hasFocus, setHasFocus] = useState(false);
+  const [isTouching, setIsTouching] = useState(false);
+  const isPaused = !isAutoPlaying || isHovered || hasFocus || isTouching;
   const [viewportHeight, setViewportHeight] = useState<number>();
   const prefersReducedMotion = useReducedMotion();
   const [sliderRef, isSliderVisible] =
@@ -135,13 +139,13 @@ export function TestimonialSlider({
 
   const handleBlur = (event: FocusEvent<HTMLDivElement>) => {
     if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
-      setIsPaused(false);
+      setHasFocus(false);
     }
   };
 
   const handlePointerUp = (event: PointerEvent<HTMLDivElement>) => {
     if (event.pointerType !== "mouse") {
-      setIsPaused(false);
+      setIsTouching(false);
     }
   };
 
@@ -149,9 +153,9 @@ export function TestimonialSlider({
     <div
       ref={sliderRef}
       className={styles.slider}
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
-      onFocusCapture={() => setIsPaused(true)}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onFocusCapture={() => setHasFocus(true)}
       onBlurCapture={handleBlur}
     >
       <div
@@ -164,9 +168,9 @@ export function TestimonialSlider({
         tabIndex={0}
         onScroll={handleScroll}
         onKeyDown={handleKeyDown}
-        onPointerDown={() => setIsPaused(true)}
+        onPointerDown={(event) => { if (event.pointerType !== "mouse") setIsTouching(true); }}
         onPointerUp={handlePointerUp}
-        onPointerCancel={() => setIsPaused(false)}
+        onPointerCancel={() => setIsTouching(false)}
       >
         <div className={styles.slider__track}>
           {testimonials.map((testimonial, index) => (
@@ -179,6 +183,8 @@ export function TestimonialSlider({
               role="group"
               aria-roledescription="diapositiva"
               aria-label={`${index + 1} de ${testimonials.length}`}
+              inert={index !== activeIndex}
+              aria-hidden={index !== activeIndex}
             >
               <TestimonialCard testimonial={testimonial} />
             </div>
@@ -228,7 +234,9 @@ export function TestimonialSlider({
         </span>
       </div>
 
-      <p className="sr-only" aria-live="polite">
+      {!prefersReducedMotion && testimonials.length > 1 && <button type="button" className={styles.slider__playback} aria-pressed={isAutoPlaying} onClick={() => setIsAutoPlaying(value => !value)}>{isAutoPlaying ? "Pausar cambio automático" : "Activar cambio automático"}</button>}
+
+      <p className="sr-only" aria-live={isPaused ? "polite" : "off"}>
         Mostrando testimonio {activeIndex + 1} de {testimonials.length}
       </p>
     </div>

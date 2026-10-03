@@ -7,7 +7,7 @@
 export const siteConfig = {
   // ── Business identity ────────────────────────────────────────────────────
   businessName: "Maestro Constructor",
-  ownerName: "Dilbert Tuesta",
+  ownerName: "Dilber Tuesta",
   tagline: "Construimos la casa que imaginaste.",
   specialty: "Construcción residencial de alta calidad",
   foundingYear: 2011,
@@ -26,8 +26,10 @@ export const siteConfig = {
   phoneHref: "tel:+51953144286",
   /** WhatsApp link */
   whatsappHref:
-    "https://wa.me/51953144286?text=Hola%20Dilbert%2C%20quisiera%20informaci%C3%B3n%20sobre%20un%20proyecto%20de%20construcci%C3%B3n.",
+    "https://wa.me/51953144286?text=Hola%20Dilber%2C%20quisiera%20informaci%C3%B3n%20sobre%20un%20proyecto%20de%20construcci%C3%B3n.",
   email: "contacto@ejemplo.com",
+  /** Optional real email for privacy enquiries; never display the example email. */
+  privacyEmail: null as string | null,
 
   // ── Statistics (shown in Credentials section) ────────────────────────────
   stats: [
@@ -53,7 +55,7 @@ export const siteConfig = {
   /** Used as <title> template: "Page | siteName" */
   siteName: "Maestro Constructor — Viviendas de Alta Calidad",
   metaDescription:
-    "Construcción y acabados de viviendas en Chachapoyas, Amazonas. Dilbert Tuesta cuenta con más de 15 años de experiencia y 20 proyectos terminados.",
+    "Construcción y acabados de viviendas en Chachapoyas, Amazonas. Dilber Tuesta cuenta con más de 15 años de experiencia y 20 proyectos terminados.",
   /** Path to OG image in /public */
   ogImage: "/images/hero/casa-nocturna.png",
 

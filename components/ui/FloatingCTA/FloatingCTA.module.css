@@ -1,128 +1,51 @@
 .button {
   position: fixed;
-  right: var(--space-8);
-  bottom: var(--space-8);
-  z-index: var(--z-modal);
-  display: flex;
-  min-width: 136px;
-  height: 52px;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-3);
-  padding-inline: var(--space-4);
-  border: var(--border-width-thin) solid rgba(255, 255, 255, 0.34);
-  border-radius: var(--radius-full);
+  right: calc(28px + env(safe-area-inset-right));
+  bottom: calc(28px + env(safe-area-inset-bottom));
+  z-index: var(--z-sticky);
+  display: grid;
+  place-items: center;
+  width: 60px;
+  height: 60px;
+  border: 1px solid rgba(255, 255, 255, .18);
+  border-radius: 50%;
   background-color: #25d366;
-  color: #ffffff;
-  box-shadow:
-    0 12px 30px rgba(9, 74, 32, 0.28),
-    0 2px 8px rgba(13, 13, 11, 0.18);
-  font-family: var(--font-body);
+  color: #fff;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, .2);
   text-decoration: none;
-  isolation: isolate;
-  animation: contactEnter 600ms var(--ease-out) 700ms backwards;
-  transition:
-    opacity var(--transition-base),
-    transform var(--transition-base),
-    box-shadow var(--transition-shadow),
-    background-color var(--transition-color);
-}
-
-.button::before {
-  content: "";
-  position: absolute;
-  inset: -1px;
-  z-index: -1;
-  border: var(--border-width-thin) solid rgba(37, 211, 102, 0.72);
-  border-radius: inherit;
-  pointer-events: none;
-  animation: contactPulse 2.4s var(--ease-out) 1.5s 2;
-}
-
-.label {
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-semibold);
-  letter-spacing: var(--tracking-wider);
-  text-transform: uppercase;
+  transition: transform var(--transition-base), background-color var(--transition-color), box-shadow var(--transition-shadow);
 }
 
 .icon {
-  width: 25px;
-  height: 25px;
-  flex: 0 0 auto;
-}
-
-.button--faded {
-  opacity: 0.62;
+  width: 34px;
+  height: 34px;
 }
 
 .button:hover {
-  opacity: 1;
-  background-color: #20bd5a;
-  box-shadow:
-    0 16px 36px rgba(9, 74, 32, 0.34),
-    0 3px 10px rgba(13, 13, 11, 0.2);
-  transform: translateY(-3px);
+  background-color: #20c760;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, .26);
+  transform: translateY(-2px);
 }
 
-.button:active {
-  transform: translateY(-1px) scale(0.98);
-}
+.button:active { transform: scale(.96); }
 
 .button:focus-visible {
-  outline: 3px solid var(--color-state-focus-ring);
+  outline: 3px solid #fff;
   outline-offset: 4px;
-}
-
-@keyframes contactEnter {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes contactPulse {
-  0% {
-    opacity: 0.55;
-    transform: scale(1);
-  }
-
-  70%,
-  100% {
-    opacity: 0;
-    transform: scale(1.18);
-  }
+  box-shadow: 0 0 0 7px var(--color-black-warm);
 }
 
 @media (max-width: 767px) {
   .button {
-    right: calc(var(--space-4) + env(safe-area-inset-right));
-    bottom: calc(var(--space-4) + env(safe-area-inset-bottom));
-    min-width: 0;
-    width: 46px;
-    height: 46px;
-    padding-inline: 0;
+    right: calc(20px + env(safe-area-inset-right));
+    bottom: calc(20px + env(safe-area-inset-bottom));
+    width: 56px;
+    height: 56px;
   }
-
-  .label {
-    display: none;
-  }
-
-  .icon {
-    width: 23px;
-    height: 23px;
-  }
+  .icon { width: 32px; height: 32px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .button,
-  .button::before {
-    animation: none;
-    transition: none;
-  }
+  .button { transition: none; }
+  .button:hover, .button:active { transform: none; }
 }

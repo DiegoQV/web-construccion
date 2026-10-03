@@ -148,7 +148,12 @@
 .showcase__sound {
   position: absolute;
   right: 17px;
-  bottom: 17px;
+  top: 50%;
+  bottom: auto;
+  left: 50%;
+  right: auto;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
   z-index: 2;
   display: inline-flex;
   min-height: 44px;
@@ -175,8 +180,11 @@
 
 .showcase__sound:hover {
   background-color: rgba(20, 16, 11, 0.9);
-  transform: translateY(-2px);
+  transform: translate(-50%, -50%);
 }
+
+.showcase__duration { margin-left: auto; font-size: 14px; letter-spacing: normal; }
+.showcase__unmute { justify-self: start; min-height: 44px; color: var(--color-bronze-pale); text-decoration: underline; font-size: 14px; }
 
 .showcase__sound:focus-visible {
   outline: 3px solid var(--color-brand-accent);

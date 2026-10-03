@@ -29,7 +29,7 @@ export const testimonials: Testimonial[] = [
   {
     id: "responsabilidad-y-acabados",
     quote:
-      "Durante la construcción de nuestra vivienda, Dilbert trabajó con responsabilidad y mucho cuidado en los acabados. Siempre estuvo dispuesto a explicar cada avance y resolver nuestras dudas con paciencia. Valoramos especialmente su dedicación, el orden con que llevó el trabajo y la tranquilidad de saber que cada detalle estaba siendo atendido.",
+      "Durante la construcción de nuestra vivienda, Dilber trabajó con responsabilidad y mucho cuidado en los acabados. Siempre estuvo dispuesto a explicar cada avance y resolver nuestras dudas con paciencia. Valoramos especialmente su dedicación, el orden con que llevó el trabajo y la tranquilidad de saber que cada detalle estaba siendo atendido.",
     clientName: "Consuelo Ruiz Chavez",
     projectType: "Construcción de vivienda",
     location: "Chachapoyas · Amazonas · Perú",

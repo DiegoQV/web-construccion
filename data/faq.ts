@@ -1,50 +1,9 @@
-// =============================================================================
-// FAQ DATA
-// Each question addresses a real client objection.
-// Answers must be direct, in first person, specific — never evasive.
-// =============================================================================
-
-export interface FaqItem {
-  id: string;
-  question: string;
-  answer: string;
-}
+export interface FaqItem { id: string; question: string; answer: string; }
 
 export const faqItems: FaqItem[] = [
-  {
-    id: "presupuesto",
-    question: "¿Qué pasa si el costo sube durante la obra?",
-    answer:
-      "Trabajo con presupuesto cerrado y por escrito. Si surge algo imprevisto que modifica el costo — como un cambio de diseño solicitado por el cliente o una condición del terreno no detectada — te informo antes de continuar. Nunca ejecuto un trabajo adicional sin tu autorización previa.",
-  },
-  {
-    id: "tiempo",
-    question: "¿Cuánto tiempo toma construir una casa?",
-    answer:
-      "Depende del tamaño y la complejidad, pero para una vivienda de entre 100 y 250 m² el plazo habitual es de 6 a 10 meses. En la primera reunión defino el cronograma completo por etapas, con fechas específicas para cada hito.",
-  },
-  {
-    id: "visita",
-    question: "¿Puedo visitar la obra mientras se construye?",
-    answer:
-      "Sí, y te lo recomiendo. Puedes visitar cuando quieras, previo aviso. Además, envío reportes fotográficos de avance regularmente para que estés informado aunque no puedas asistir en persona.",
-  },
-  {
-    id: "garantia",
-    question: "¿Qué garantía tienes sobre tu trabajo?",
-    answer:
-      "Garantizo la estructura por 10 años y los acabados por 1 año. Si hay algún problema producto de la construcción en ese período, lo resuelvo sin costo adicional. Antes de entregar la obra, hacemos una inspección conjunta para asegurarnos de que todo esté en orden.",
-  },
-  {
-    id: "equipo",
-    question: "¿Trabajas con subcontratistas o tienes tu propio equipo?",
-    answer:
-      "Cuento con mi propio equipo de albañilería y trabajo con especialistas de confianza para instalaciones eléctricas, hidrosanitarias y acabados. Yo superviso personalmente todas las etapas. No subcontrato la obra en su totalidad a terceros.",
-  },
-  {
-    id: "inicio",
-    question: "¿Cómo se inicia el proceso?",
-    answer:
-      "Con una reunión gratuita donde revisamos el terreno, tus necesidades y el presupuesto disponible. A partir de ahí preparo una cotización detallada por escrito. Si estás de acuerdo, firmamos un contrato y establecemos el cronograma de inicio.",
-  },
+  { id: "servicios", question: "¿Qué trabajos puedo consultar?", answer: "Construcción de viviendas, remodelación, acabados y supervisión de obra en Chachapoyas. Describe qué necesitas para revisar el alcance de tu proyecto con Dilber." },
+  { id: "inicio", question: "¿Qué información necesito para pedir una cotización?", answer: "Comparte la ubicación del terreno o vivienda, el tipo de trabajo y el área aproximada. Si tienes planos o fotografías, también pueden ayudar. Si todavía no cuentas con todos esos datos, puedes iniciar la conversación con lo que tengas." },
+  { id: "presupuesto", question: "¿Cómo se define el presupuesto?", answer: "El presupuesto depende del alcance, los materiales, las condiciones del terreno y los acabados. La propuesta se revisa por partidas para aclarar qué trabajos incluye y qué decisiones quedan pendientes antes de iniciar." },
+  { id: "tiempo", question: "¿Cuánto tiempo toma una obra?", answer: "El plazo se define según el tamaño, la complejidad y las condiciones del proyecto. Durante la planificación se revisan las etapas y el cronograma; una duración concreta requiere conocer primero el trabajo que necesitas." },
+  { id: "cambios", question: "¿Qué conviene acordar antes de empezar?", answer: "El alcance de los trabajos, los materiales, el presupuesto, las etapas de pago, el cronograma y cómo se gestionarán los cambios. Las condiciones de entrega y las garantías deben quedar claras en la propuesta y el acuerdo de cada proyecto." },
 ];

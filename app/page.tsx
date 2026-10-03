@@ -96,14 +96,13 @@ export default function HomePage() {
         {/* 02 — Credenciales: estadísticas animadas */}
         <Credentials />
 
+        <About />
+
         {/* 03 — Galería: Fotografías 2, 3 y 4 */}
         <Gallery />
 
         {/* 04 — Recorrido audiovisual de una vivienda */}
         <VideoShowcaseSection />
-
-        {/* 05 — El Maestro: presentación personal */}
-        <About />
 
         {/* 06 — Proceso constructivo: 5 pasos */}
         <Process />

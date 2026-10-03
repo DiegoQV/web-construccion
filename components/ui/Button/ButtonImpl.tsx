@@ -2,16 +2,16 @@ import type { ButtonVariant, ButtonSize } from "@/types/common";
 import { cn } from "@/lib/utils";
 import styles from "./Button.module.css";
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonAppearance {
   variant?: ButtonVariant;
   size?: ButtonSize;
-  /** Renders as an anchor tag when provided */
-  href?: string;
-  target?: React.HTMLAttributeAnchorTarget;
-  rel?: string;
   children: React.ReactNode;
 }
+
+export type ButtonProps = ButtonAppearance & (
+  | (React.AnchorHTMLAttributes<HTMLAnchorElement> & { href: string })
+  | (React.ButtonHTMLAttributes<HTMLButtonElement> & { href?: undefined })
+);
 
 /**
  * Button — Design System component
@@ -27,8 +27,6 @@ export function Button({
   variant = "outline",
   size = "md",
   href,
-  target,
-  rel,
   className,
   children,
   ...props
@@ -40,16 +38,16 @@ export function Button({
     className
   );
 
-  if (href) {
+  if (href !== undefined) {
     return (
-      <a href={href} className={classes} target={target} rel={rel}>
+      <a href={href} className={classes} {...props as React.AnchorHTMLAttributes<HTMLAnchorElement>}>
         {children}
       </a>
     );
   }
 
   return (
-    <button className={classes} {...props}>
+    <button type="button" className={classes} {...props as React.ButtonHTMLAttributes<HTMLButtonElement>}>
       {children}
     </button>
   );

@@ -1,7 +1,3 @@
-"use client";
-
-import { useScrollDirection } from "@/hooks/useScrollDirection";
-import { cn } from "@/lib/utils";
 import { siteConfig } from "@/data/site-config";
 import styles from "./FloatingCTA.module.css";
 
@@ -30,25 +26,19 @@ function WhatsAppLogo() {
 
 /**
  * FloatingCTA — Acceso fijo y directo a WhatsApp.
- * Becomes semi-transparent when scrolling down (non-invasive).
- * Positioned bottom-right, z-index 100.
+ * Circular WhatsApp logo, available on mobile and desktop.
  */
 export function FloatingCTA() {
-  const direction = useScrollDirection();
-
   return (
     <a
       href={siteConfig.whatsappHref}
-      className={cn(
-        styles.button,
-        direction === "down" && styles["button--faded"]
-      )}
+      className={styles.button}
+      title="Escribir por WhatsApp"
       aria-label={`Contactar por WhatsApp: ${siteConfig.phoneDisplay}`}
       target="_blank"
       rel="noopener noreferrer"
     >
       <WhatsAppLogo />
-      <span className={styles.label}>WhatsApp</span>
     </a>
   );
 }

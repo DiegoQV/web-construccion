@@ -66,6 +66,10 @@
   margin-top: var(--space-10);
 }
 
+.contact__next { margin-top: 28px; padding-top: 24px; border-top: 1px solid rgba(245,242,238,.2); max-width: 600px; }
+.contact__next h3 { font-size: 16px; font-weight: 600; margin-bottom: 12px; }
+.contact__next p { color: #e0dcd6; font-size: 15px; line-height: 1.7; margin-top: 10px; }
+
 .contact__primary,
 .contact__secondary {
   width: 100%;

@@ -79,7 +79,7 @@
 /* Accent — used exclusively for main CTA "Solicitar cotización" */
 .button--accent {
   background-color: var(--color-brand-accent);
-  color: var(--color-text-inverse);
+  color: var(--color-black-absolute);
   border-radius: var(--radius-none);
 }
 

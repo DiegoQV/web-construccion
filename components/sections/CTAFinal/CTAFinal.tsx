@@ -47,6 +47,11 @@ export function CTAFinal() {
               Llamar ahora
             </Button>
           </div>
+          <div className={styles.contact__next}>
+            <h3>¿Qué puedes enviarnos?</h3>
+            <p>Ubicación, tipo de trabajo y área aproximada. Si tienes planos o fotos, compártelos también.</p>
+            <p>No necesitas tener todo definido. Primero conversamos sobre lo que necesitas; después revisamos el alcance y coordinamos los siguientes pasos.</p>
+          </div>
         </ScrollReveal>
 
         <ScrollReveal

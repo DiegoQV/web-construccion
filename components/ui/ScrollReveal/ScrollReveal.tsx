@@ -54,7 +54,7 @@ export function ScrollReveal({
         isVisible && styles["reveal--visible"],
         className
       )}
-      style={delay ? { transitionDelay: `${delay}ms` } : undefined}
+      style={delay ? { animationDelay: `${Math.min(delay, 240)}ms` } : undefined}
     >
       {children}
     </Tag>

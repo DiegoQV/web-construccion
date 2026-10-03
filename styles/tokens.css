@@ -26,7 +26,7 @@
   --color-bg-overlay-dark: #1c1c1ad1;
   --color-text-primary: var(--color-black-warm);
   --color-text-secondary: var(--color-brown-mid);
-  --color-text-muted: var(--color-brown-light);
+  --color-text-muted: #756e66;
   --color-text-inverse: var(--color-sand-white);
   --color-text-accent: var(--color-bronze-base);
   --color-text-disabled: var(--color-sand-dark);
@@ -37,7 +37,7 @@
   --color-border-inverse: #f5f2ee1f;
   --color-state-hover-bg: #1c1c1a0a;
   --color-state-hover-dark: #2e2d2a;
-  --color-state-focus-ring: #b8975a4d;
+  --color-state-focus-ring: #946b32;
   --color-state-disabled: var(--color-sand-dark);
   --gradient-hero: linear-gradient(180deg,
     #1c1c1a00 0%,

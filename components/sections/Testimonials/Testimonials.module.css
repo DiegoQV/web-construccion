@@ -65,7 +65,7 @@
 .testimonial {
   position: relative;
   display: flex;
-  min-height: 500px;
+  min-height: 360px;
   flex-direction: column;
   padding: var(--space-16) var(--space-20);
 }
@@ -135,7 +135,7 @@
   gap: var(--space-2);
   margin-top: var(--space-3);
   font-family: var(--font-body);
-  font-size: var(--font-size-2xs);
+  font-size: 13px;
   font-weight: var(--font-weight-medium);
   line-height: var(--line-height-normal);
   letter-spacing: var(--tracking-wider);
@@ -203,18 +203,20 @@
 }
 
 .slider__indicator {
-  width: 8px;
-  height: 8px;
-  border-radius: var(--radius-full);
-  background-color: var(--color-border-default);
-  transition:
-    width var(--transition-slow),
-    background-color var(--transition-color);
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  background: transparent;
 }
 
+.slider__indicator::after { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--color-border-default); }
+.slider__indicator[aria-current="true"]::after { width: 24px; border-radius: 4px; background: var(--color-bronze-deep); }
+.testimonial__read { min-height: 44px; margin-top: 12px; color: var(--color-bronze-deep); font-family: var(--font-body); font-size: 14px; font-weight: 500; text-decoration: underline; text-underline-offset: 4px; }
+.slider__playback { display: block; min-height: 44px; margin: 8px auto 0; color: var(--color-text-secondary); font-size: 14px; text-decoration: underline; text-underline-offset: 4px; }
+
 .slider__indicator[aria-current="true"] {
-  width: 28px;
-  background-color: var(--color-border-accent);
+  width: 44px;
 }
 
 .slider__counter {
@@ -252,7 +254,7 @@
   }
 
   .testimonial {
-    min-height: 480px;
+    min-height: 360px;
     padding: var(--space-12);
   }
 
@@ -276,7 +278,7 @@
   }
 
   .testimonial {
-    min-height: 460px;
+    min-height: 0;
     padding: var(--space-8) var(--space-6) var(--space-10);
   }
 
@@ -318,12 +320,12 @@
   }
 
   .slider__indicator {
-    width: 7px;
-    height: 7px;
+    width: 44px;
+    height: 44px;
   }
 
   .slider__indicator[aria-current="true"] {
-    width: 24px;
+    width: 44px;
   }
 }
 

@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import styles from "./NavDrawer.module.css";
 
 interface NavDrawerProps {
+  homePath?: string;
   isOpen: boolean;
   onClose: () => void;
 }
@@ -19,7 +20,7 @@ interface NavDrawerProps {
  *
  * Screen Specification: Section 00 — Mobile Drawer
  */
-export function NavDrawer({ isOpen, onClose }: NavDrawerProps) {
+export function NavDrawer({ isOpen, onClose, homePath = "" }: NavDrawerProps) {
   const drawerRef = useRef<HTMLDivElement>(null);
   const firstFocusableRef = useRef<HTMLButtonElement>(null);
   const previouslyFocusedRef = useRef<HTMLElement | null>(null);
@@ -134,7 +135,7 @@ export function NavDrawer({ isOpen, onClose }: NavDrawerProps) {
           {siteConfig.navItems.map((item, index) => (
             <a
               key={item.href}
-              href={item.href}
+              href={`${homePath}${item.href}`}
               className={styles.drawer__link}
               onClick={handleLinkClick}
               style={{ animationDelay: `${index * 60}ms` }}
@@ -169,7 +170,7 @@ export function NavDrawer({ isOpen, onClose }: NavDrawerProps) {
           <Button
             variant="accent"
             size="lg"
-            href="#contacto"
+            href={`${homePath}#contacto`}
             className={styles.drawer__cta}
             onClick={handleLinkClick}
           >

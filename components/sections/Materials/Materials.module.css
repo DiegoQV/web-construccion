@@ -51,7 +51,7 @@
   overflow: hidden;
   height: 328px;
   background-color: var(--color-state-hover-dark);
-  clip-path: inset(100% 0 0 0);
+  clip-path: inset(0);
   transition: clip-path 850ms var(--ease-out) var(--reveal-delay, 0ms);
 }
 
@@ -79,7 +79,7 @@
   gap: var(--space-5);
   align-items: baseline;
   padding-top: var(--space-5);
-  opacity: 0;
+  opacity: 1;
   transform: translateY(10px);
   transition:
     opacity 500ms var(--ease-out) calc(var(--reveal-delay, 0ms) + 520ms),

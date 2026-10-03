@@ -8,7 +8,9 @@ import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { Button } from "@/components/ui/Button";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { ProjectCard, type ProjectCardVariant } from "./ProjectCard";
+import { ProjectCard } from "./ProjectCard";
+import { ProjectDialog } from "./ProjectDialog";
+import type { Project } from "@/types/project";
 import styles from "./Gallery.module.css";
 
 const orderedProjects = [
@@ -16,18 +18,10 @@ const orderedProjects = [
   ...projects.filter((project) => project.id !== featuredProject.id),
 ];
 
-const variants: ProjectCardVariant[] = [
-  "featured",
-  "portrait",
-  "landscape",
-  "process",
-];
-
-const getProjectVariant = (index: number) => variants[index % variants.length];
-
 export function Gallery() {
   const trackRef = useRef<HTMLDivElement>(null);
   const [activeProject, setActiveProject] = useState(0);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const prefersReducedMotion = useReducedMotion();
 
   const updateActiveProject = () => {
@@ -75,7 +69,7 @@ export function Gallery() {
           <ScrollReveal className={styles.gallery__heading}>
             <SectionLabel>Obra construida</SectionLabel>
             <h2 id="gallery-title" className="display-md">
-              Casas que convierten precisión en bienestar.
+              Explora nuestras obras realizadas.
             </h2>
           </ScrollReveal>
 
@@ -85,8 +79,8 @@ export function Gallery() {
             className={styles.gallery__intro}
           >
             <p className="body-lg">
-              Viviendas donde estructura, proporción y acabado crean espacios
-              hechos para durar.
+              Fachadas, interiores y acabados en Chachapoyas. Amplía cada imagen
+              para conocer los detalles de la obra.
             </p>
           </ScrollReveal>
         </header>
@@ -125,13 +119,12 @@ export function Gallery() {
                 key={project.id}
                 delay={index * 90}
                 threshold={0.08}
-                className={`${styles.gallery__item} ${styles[`gallery__item--${getProjectVariant(index)}`]}`}
+                className={styles.gallery__item}
               >
                 <ProjectCard
                   project={project}
                   index={index}
-                  variant={getProjectVariant(index)}
-                  isActive={index === activeProject}
+                  onOpen={() => setSelectedProject(project)}
                 />
               </ScrollReveal>
             ))}
@@ -178,6 +171,7 @@ export function Gallery() {
           </Button>
         </footer>
       </div>
+      <ProjectDialog project={selectedProject} onClose={() => setSelectedProject(null)} />
     </section>
   );
 }

@@ -9,13 +9,13 @@ import { Button } from "@/components/ui/Button";
 import { GoldLine } from "@/components/ui/GoldLine";
 import { cn } from "@/lib/utils";
 import styles from "./Hero.module.css";
+import { HeroVideo } from "./HeroVideo";
 
 /**
  * Hero — Sección de impacto inicial.
  *
- * Fotografía: casa-nocturna.png (Fotografía 1 — aprobada)
- * Overlay: mínimo — la foto tiene fondo oscuro natural
- * Efecto: acercamiento progresivo + parallax suave al hacer scroll en escritorio
+ * Vídeo decorativo en escritorio; fotografía como respaldo y en móvil.
+ * La reproducción respeta la preferencia de movimiento reducido.
  *
  * Screen Specification: Sección 01
  */
@@ -102,6 +102,8 @@ export function Hero() {
         />
       </div>
 
+      <HeroVideo />
+
       {/* ── Overlays ─────────────────────────────────────── */}
       {/* Overlay superior — legibilidad del navbar */}
       <div className={styles.hero__overlay_top} aria-hidden="true" />
@@ -140,10 +142,10 @@ export function Hero() {
             style={{ "--delay": "280ms" } as React.CSSProperties}
           >
             <span className={styles.hero__subtitle_desktop}>
-              15 años construyendo viviendas sólidas y personalizadas en {siteConfig.city}.
+              Construcción, remodelación y acabados de viviendas en {siteConfig.city}. Con Dilber Tuesta, de principio a fin.
             </span>
             <span className={styles.hero__subtitle_mobile}>
-              15 años construyendo viviendas en {siteConfig.city}.
+              Construcción, remodelación y acabados en {siteConfig.city}. Con Dilber Tuesta.
             </span>
           </p>
 
@@ -169,7 +171,7 @@ export function Hero() {
               href="#proyectos"
               className={styles.hero__btn_secondary}
             >
-              Ver proyectos
+              Ver obras realizadas
             </Button>
           </div>
         </div>

@@ -1,1 +1,12 @@
-/* FAQ styles — Sprint 9 */
+.faq { background: var(--color-sand-light); }
+.inner { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: 72px; max-width: 1280px; margin: auto; padding: 88px 80px; }
+.inner header > p { margin-top: 24px; color: var(--color-text-secondary); font-size: 16px; }
+.item { border-bottom: 1px solid var(--color-border-default); }
+.item:first-child { border-top: 1px solid var(--color-border-default); }
+.item summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 24px 0; font-size: 16px; font-weight: 500; line-height: 1.5; }
+.item summary::-webkit-details-marker { display: none; }
+.item summary span { flex: 0 0 24px; text-align: center; color: var(--color-bronze-deep); font-size: 26px; transition: transform .2s; }
+.item[open] summary span { transform: rotate(45deg); }
+.item > p { padding: 0 32px 24px 0; color: var(--color-text-secondary); font-size: 15px; line-height: 1.8; }
+@media (max-width: 1023px) { .inner { padding: 72px 40px; gap: 40px; } }
+@media (max-width: 767px) { .inner { grid-template-columns: 1fr; padding: 56px 20px; gap: 32px; } .inner h2 { font-size: 36px; } }

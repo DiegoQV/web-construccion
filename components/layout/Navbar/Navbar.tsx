@@ -19,16 +19,17 @@ import styles from "./Navbar.module.css";
  *
  * Screen Specification: Section 00
  */
-export function Navbar() {
+export function Navbar({ solid = false, homePath = "" }: { solid?: boolean; homePath?: string }) {
   const { isScrolled } = useNavbarState(80);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const isSolid = solid || isScrolled;
 
   return (
     <>
       <header
         className={cn(
           styles.navbar,
-          isScrolled && styles["navbar--scrolled"]
+          isSolid && styles["navbar--scrolled"]
         )}
         role="banner"
       >
@@ -55,7 +56,7 @@ export function Navbar() {
             {siteConfig.navItems.map((item) => (
               <a
                 key={item.href}
-                href={item.href}
+                href={`${homePath}${item.href}`}
                 className={cn(styles.navbar__link, "nav-item")}
               >
                 {item.label}
@@ -91,10 +92,10 @@ export function Navbar() {
             <Button
               variant="outline"
               size="sm"
-              href="#contacto"
+              href={`${homePath}#contacto`}
               className={cn(
                 styles.navbar__cta,
-                !isScrolled && styles["navbar__cta--inverse"]
+                !isSolid && styles["navbar__cta--inverse"]
               )}
             >
               Cotizar
@@ -121,6 +122,7 @@ export function Navbar() {
 
       {/* ── Drawer mobile ─────────────────────────────────── */}
       <NavDrawer
+        homePath={homePath}
         isOpen={drawerOpen}
         onClose={() => setDrawerOpen(false)}
       />
