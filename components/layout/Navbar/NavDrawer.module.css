@@ -131,6 +131,13 @@
 
 /* ── Footer ─────────────────────────────────────────────────────────────── */
 
+.drawer__link[aria-current="location"] {
+  color: var(--color-bronze-pale);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 8px;
+}
+
 .drawer__footer {
   display: flex;
   flex-direction: column;

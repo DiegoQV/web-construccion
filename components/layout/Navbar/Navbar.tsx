@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavbarState } from "@/hooks/useNavbarState";
 import { siteConfig } from "@/data/site-config";
 import { Button } from "@/components/ui/Button";
@@ -13,7 +13,7 @@ import styles from "./Navbar.module.css";
  * Navbar — Fixed navigation header.
  *
  * Behavior:
- * - Transparent over the hero (scroll = 0)
+ * - Dark translucent background over the hero
  * - Solid with blur when scrolled > 80px
  * - Collapses to hamburger on tablet/mobile
  *
@@ -22,7 +22,33 @@ import styles from "./Navbar.module.css";
 export function Navbar({ solid = false, homePath = "" }: { solid?: boolean; homePath?: string }) {
   const { isScrolled } = useNavbarState(80);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [activeHref, setActiveHref] = useState("");
   const isSolid = solid || isScrolled;
+
+  useEffect(() => {
+    if (homePath) return;
+    const sections = siteConfig.navItems.map(item => ({ href: item.href, element: document.querySelector(item.href) }));
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const readingLine = Math.max(120, window.innerHeight * .25);
+      const active = sections.find(({ element }) => {
+        if (!element) return false;
+        const rect = element.getBoundingClientRect();
+        return rect.top <= readingLine && rect.bottom > readingLine;
+      });
+      setActiveHref(active?.href ?? "");
+    };
+    const schedule = () => { if (!frame) frame = window.requestAnimationFrame(update); };
+    schedule();
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+    };
+  }, [homePath]);
 
   return (
     <>
@@ -57,6 +83,7 @@ export function Navbar({ solid = false, homePath = "" }: { solid?: boolean; home
               <a
                 key={item.href}
                 href={`${homePath}${item.href}`}
+                aria-current={activeHref === item.href ? "location" : undefined}
                 className={cn(styles.navbar__link, "nav-item")}
               >
                 {item.label}
@@ -122,6 +149,7 @@ export function Navbar({ solid = false, homePath = "" }: { solid?: boolean; home
 
       {/* ── Drawer mobile ─────────────────────────────────── */}
       <NavDrawer
+        activeHref={activeHref}
         homePath={homePath}
         isOpen={drawerOpen}
         onClose={() => setDrawerOpen(false)}

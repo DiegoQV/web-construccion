@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import styles from "./NavDrawer.module.css";
 
 interface NavDrawerProps {
+  activeHref?: string;
   homePath?: string;
   isOpen: boolean;
   onClose: () => void;
@@ -20,7 +21,7 @@ interface NavDrawerProps {
  *
  * Screen Specification: Section 00 — Mobile Drawer
  */
-export function NavDrawer({ isOpen, onClose, homePath = "" }: NavDrawerProps) {
+export function NavDrawer({ isOpen, onClose, homePath = "", activeHref = "" }: NavDrawerProps) {
   const drawerRef = useRef<HTMLDivElement>(null);
   const firstFocusableRef = useRef<HTMLButtonElement>(null);
   const previouslyFocusedRef = useRef<HTMLElement | null>(null);
@@ -136,6 +137,7 @@ export function NavDrawer({ isOpen, onClose, homePath = "" }: NavDrawerProps) {
             <a
               key={item.href}
               href={`${homePath}${item.href}`}
+              aria-current={activeHref === item.href ? "location" : undefined}
               className={styles.drawer__link}
               onClick={handleLinkClick}
               style={{ animationDelay: `${index * 60}ms` }}

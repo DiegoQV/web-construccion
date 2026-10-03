@@ -40,7 +40,7 @@ export default function PrivacyPage() {
           <p className={styles.eyebrow}><ShieldCheck size={18} aria-hidden="true" /> Tu información importa</p>
           <h1>Política de privacidad</h1>
           <p className={styles.intro}>Queremos que sepas qué sucede con tu información cuando visitas esta web o conversas con nosotros sobre tu proyecto.</p>
-          <p className={styles.date}>Última actualización: <time dateTime="2026-10-02">2 de octubre de 2026</time></p>
+          <p className={styles.date}>Última actualización: <time dateTime="2026-10-03">3 de octubre de 2026</time></p>
         </header>
 
         <div className={styles.content}>
@@ -77,7 +77,7 @@ export default function PrivacyPage() {
 
             <section id="cookies">
               <h2>5. Cookies y navegación</h2>
-              <p>La versión actual de esta web no incorpora herramientas de analítica, píxeles publicitarios ni cookies de seguimiento propias. Las imágenes, las fuentes y los vídeos se sirven como recursos del sitio. Los recorridos de obras se reproducen cuando los activas; el vídeo decorativo de la portada puede reproducirse automáticamente, sin sonido, en escritorio, y dispone de un control para pausarlo. En móvil o si prefieres reducir el movimiento, se muestra una fotografía.</p>
+              <p>La versión actual de esta web no incorpora herramientas de analítica, píxeles publicitarios ni cookies de seguimiento propias. Las imágenes, las fuentes y los vídeos se sirven como recursos del sitio. Los recorridos de obras se reproducen cuando los activas. La portada muestra una fotografía con una breve animación de entrada, que se desactiva si prefieres reducir el movimiento.</p>
               <p>WhatsApp u otros sitios externos pueden utilizar sus propias cookies cuando los visitas. Puedes gestionar las cookies desde la configuración de tu navegador.</p>
             </section>
 

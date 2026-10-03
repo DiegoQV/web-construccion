@@ -9,21 +9,17 @@ import { Button } from "@/components/ui/Button";
 import { GoldLine } from "@/components/ui/GoldLine";
 import { cn } from "@/lib/utils";
 import styles from "./Hero.module.css";
-import { HeroVideo } from "./HeroVideo";
 
 /**
  * Hero — Sección de impacto inicial.
  *
- * Vídeo decorativo en escritorio; fotografía como respaldo y en móvil.
- * La reproducción respeta la preferencia de movimiento reducido.
+ * Fotografía con una entrada breve que respeta el movimiento reducido.
  *
  * Screen Specification: Sección 01
  */
 export function Hero() {
   const prefersReduced = useReducedMotion();
-  const [scrollY, setScrollY] = useState(0);
   const [isHeroReady, setIsHeroReady] = useState(false);
-  const heroRef = useRef<HTMLElement>(null);
   const heroStartTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const startHeroSequence = useCallback(() => {
@@ -46,29 +42,8 @@ export function Hero() {
     };
   }, [startHeroSequence]);
 
-  // Parallax en scroll
-  useEffect(() => {
-    if (prefersReduced) return;
-    if (!window.matchMedia("(min-width: 1024px)").matches) return;
-
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      // Solo calcular mientras el hero es visible
-      const heroHeight = heroRef.current?.offsetHeight ?? window.innerHeight;
-      if (currentScrollY < heroHeight) {
-        setScrollY(currentScrollY);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [prefersReduced]);
-
-  const parallaxOffset = prefersReduced ? 0 : scrollY * 0.3;
-
   return (
     <section
-      ref={heroRef}
       className={cn(
         styles.hero,
         isHeroReady && styles["hero--ready"]
@@ -76,19 +51,7 @@ export function Hero() {
       aria-label="Maestro Constructor Premium"
     >
       {/* ── Fotografía de fondo ──────────────────────────── */}
-      <div
-        className={cn(
-          styles.hero__media,
-          !prefersReduced && styles["hero__media--parallax"]
-        )}
-        style={
-          !prefersReduced
-            ? {
-                "--hero-parallax-offset": `${parallaxOffset}px`,
-              } as React.CSSProperties
-            : undefined
-        }
-      >
+      <div className={styles.hero__media}>
         <Image
           src={heroImage}
           alt="Vivienda residencial contemporánea de dos niveles con volúmenes definidos y carpintería de madera"
@@ -101,8 +64,6 @@ export function Hero() {
           onLoad={startHeroSequence}
         />
       </div>
-
-      <HeroVideo />
 
       {/* ── Overlays ─────────────────────────────────────── */}
       {/* Overlay superior — legibilidad del navbar */}
@@ -142,10 +103,10 @@ export function Hero() {
             style={{ "--delay": "280ms" } as React.CSSProperties}
           >
             <span className={styles.hero__subtitle_desktop}>
-              Construcción, remodelación y acabados de viviendas en {siteConfig.city}. Con Dilber Tuesta, de principio a fin.
+              Construcción, remodelación y acabados de viviendas en {siteConfig.city}.
             </span>
             <span className={styles.hero__subtitle_mobile}>
-              Construcción, remodelación y acabados en {siteConfig.city}. Con Dilber Tuesta.
+              Construcción, remodelación y acabados en {siteConfig.city}.
             </span>
           </p>
 
