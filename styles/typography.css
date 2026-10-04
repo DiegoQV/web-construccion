@@ -16,7 +16,7 @@
 
 .display-md {
   font-family: var(--font-display);
-  font-weight: var(--font-weight-regular);
+  font-weight: var(--font-weight-semibold);
   font-size: clamp(36px, 4vw, 52px);
   line-height: var(--line-height-snug);
   letter-spacing: var(--tracking-normal);
@@ -58,7 +58,7 @@
 
 .overline {
   font-family: var(--font-body);
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--font-weight-semibold);
   font-size: var(--font-size-xs);
   line-height: var(--line-height-normal);
   letter-spacing: var(--tracking-widest);
