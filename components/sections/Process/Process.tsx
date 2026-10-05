@@ -32,16 +32,6 @@ export function Process() {
             />
             <figcaption className={styles.process__photoLabel}>En obra <span aria-hidden="true">·</span> Chachapoyas</figcaption>
           </ScrollReveal>
-          <ScrollReveal
-            variant="fadeIn"
-            delay={120}
-            className={styles.process__intro}
-          >
-            <p className="body-lg">
-              Planificamos cada paso y te mantenemos informado para que tu obra
-              avance con orden y costos claros.
-            </p>
-          </ScrollReveal>
         </header>
         </div>
 
