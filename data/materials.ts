@@ -9,8 +9,6 @@ export interface MaterialFeature {
 export const materialsContent = {
   eyebrow: "Calidad desde la base",
   title: "La calidad se construye. Y se ve en los detalles.",
-  introduction:
-    "Del primer muro al último acabado, el cuidado está en cómo se ejecuta cada parte de tu vivienda.",
   features: [
     {
       id: "acabados",

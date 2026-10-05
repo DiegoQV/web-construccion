@@ -1,7 +1,7 @@
 import { materialsContent } from "@/data/materials";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { MaterialFeature } from "./MaterialFeature";
+import { MaterialsCarousel } from "./MaterialsCarousel";
 import styles from "./Materials.module.css";
 
 export function Materials() {
@@ -20,26 +20,9 @@ export function Materials() {
           >
             {materialsContent.title}
           </h2>
-          <p className={`${styles.materials__intro} body-lg`}>
-            {materialsContent.introduction}
-          </p>
         </ScrollReveal>
-
-        <div
-          className={styles.materials__gallery}
-          aria-label="Calidad y ejecución en obra"
-        >
-          {materialsContent.features.map((feature, index) => (
-            <div key={feature.id} className={styles.materials__feature}>
-              <MaterialFeature
-                feature={feature}
-                featured={index === 0}
-                index={index}
-              />
-            </div>
-          ))}
-        </div>
       </div>
+      <MaterialsCarousel />
     </section>
   );
 }
