@@ -1,16 +1,9 @@
-export type ProcessIcon =
-  | "consultation"
-  | "budget"
-  | "planning"
-  | "construction"
-  | "delivery";
-
 export interface ProcessStep {
   id: string;
   number: string;
   title: string;
   description: string;
-  icon: ProcessIcon;
+  outcome: string;
 }
 
 export const processSteps: ProcessStep[] = [
@@ -19,39 +12,39 @@ export const processSteps: ProcessStep[] = [
     number: "01",
     title: "Primera consulta",
     description:
-      "Revisamos tus necesidades, las condiciones del terreno y el alcance real del proyecto antes de tomar decisiones.",
-    icon: "consultation",
+      "Conversamos sobre lo que necesitas y revisamos el terreno para definir el alcance del proyecto.",
+    outcome: "Alcance definido",
   },
   {
     id: "presupuesto",
     number: "02",
     title: "Presupuesto detallado",
     description:
-      "Desglosamos materiales, mano de obra, partidas y plazos para que conozcas con claridad dónde se invierte cada recurso.",
-    icon: "budget",
+      "Detallamos materiales, mano de obra y partidas para que sepas cómo se distribuye la inversión.",
+    outcome: "Presupuesto desglosado",
   },
   {
     id: "planificacion",
     number: "03",
     title: "Planificación de obra",
     description:
-      "Definimos el cronograma, la secuencia de trabajos, las compras y la coordinación del equipo antes de iniciar.",
-    icon: "planning",
+      "Organizamos el cronograma, las compras y el equipo antes de comenzar los trabajos.",
+    outcome: "Plan de trabajo organizado",
   },
   {
     id: "construccion",
     number: "04",
     title: "Construcción supervisada",
     description:
-      "Controlamos diariamente la ejecución, la calidad de los materiales y el avance acordado, manteniéndote informado.",
-    icon: "construction",
+      "Revisamos la ejecución y los materiales, y te mantenemos informado sobre el avance de la obra.",
+    outcome: "Avance supervisado",
   },
   {
     id: "entrega",
     number: "05",
     title: "Entrega final",
     description:
-      "Realizamos una inspección conjunta, verificamos cada acabado y entregamos la obra lista para ser habitada.",
-    icon: "delivery",
+      "Inspeccionamos la obra contigo y verificamos los acabados antes de la entrega.",
+    outcome: "Entrega revisada en conjunto",
   },
 ];

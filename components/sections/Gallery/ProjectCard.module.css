@@ -1,14 +1,12 @@
 .card { width: 100%; }
 .card__media { display: block; position: relative; width: 100%; aspect-ratio: 4 / 3; overflow: hidden; background: var(--color-sand-mid); border-radius: 4px; text-align: left; }
-.card__image { object-fit: cover; transition: transform .35s ease; }
+.card__image { object-fit: contain; transition: transform .35s ease; }
 .expand { position: absolute; display: inline-flex; align-items: center; gap: 8px; bottom: 16px; right: 16px; padding: 10px 14px; background: #17130edb; color: white; border-radius: 4px; font-size: 13px; }
-.card__caption { padding-top: 20px; }
+.card__caption { padding-top: 18px; border-bottom: 1px solid var(--color-border-default); padding-bottom: 20px; }
 .card__meta { display: flex; gap: 12px; align-items: center; margin-bottom: 8px; color: var(--color-text-secondary); font-size: 13px; }
 .card__meta span:first-child { color: var(--color-bronze-deep); }
 .card__title { font-family: var(--font-display); font-size: 30px; font-weight: 500; line-height: 1.2; }
-.location { margin-top: 8px; color: var(--color-text-secondary); font-size: 14px; }
-.card__description { margin-top: 12px; color: var(--color-text-secondary); font-size: 15px; line-height: 1.7; }
-.highlight { margin-top: 16px; display: inline-block; padding: 6px 10px; color: var(--color-brown-deep); background: var(--color-sand-light); font-size: 13px; border-radius: 3px; }
-@media (hover: hover) { .card__media:hover .card__image { transform: scale(1.025); } }
-@media (max-width: 767px) { .card__title { font-size: 27px; } .card__image { object-fit: contain; object-position: center !important; } .card__media { background: var(--color-black-warm); } }
+.card__media:focus-visible { outline: 2px solid var(--color-bronze-deep); outline-offset: 5px; }
+@media (hover: hover) { .card__media:hover .expand { background: var(--color-bronze-deep); } }
+@media (max-width: 767px) { .card__title { font-size: 27px; } .card__media { aspect-ratio: 4 / 3 !important; background: var(--color-black-warm); } }
 @media (prefers-reduced-motion: reduce) { .card__image { transition: none; } .card__media:hover .card__image { transform: none; } }

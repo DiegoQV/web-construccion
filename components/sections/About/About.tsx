@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { siteConfig } from "@/data/site-config";
 import { Button } from "@/components/ui/Button";
 import { SectionLabel } from "@/components/ui/SectionLabel";
@@ -12,15 +13,15 @@ export function About() {
       aria-labelledby="about-title"
     >
       <div className={styles.inner}>
-        <figure className={styles.photo}>
+        <ScrollReveal as="figure" variant="imageUp" className={styles.photo}>
           <Image
             src="/images/about/dilber-tuesta.webp"
             alt="Dilber Tuesta, maestro constructor, con casco y chaleco de seguridad en una obra"
             fill
             sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1023px) 42vw, 480px"
           />
-        </figure>
-        <div className={styles.content}>
+        </ScrollReveal>
+        <ScrollReveal delay={120} className={styles.content}>
           <SectionLabel>Conoce al maestro</SectionLabel>
           <h2 id="about-title" className="display-md">
             Tu proyecto tiene un responsable.
@@ -45,7 +46,7 @@ export function About() {
           >
             Conversar con Dilber
           </Button>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );

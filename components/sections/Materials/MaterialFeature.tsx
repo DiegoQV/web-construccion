@@ -31,7 +31,7 @@ export function MaterialFeature({
   return (
     <figure
       ref={featureRef}
-      className={`${styles.feature} ${isRevealed ? styles["feature--revealed"] : ""}`}
+      className={`${styles.feature} ${featured ? styles["feature--lead"] : ""} ${isRevealed ? styles["feature--revealed"] : ""}`}
       style={revealStyle}
     >
       <div className={styles.feature__media}>
@@ -42,15 +42,15 @@ export function MaterialFeature({
           loading="lazy"
           sizes={
             featured
-              ? "(max-width: 767px) calc(100vw - 40px), (max-width: 1023px) 50vw, 58vw"
-              : "(max-width: 767px) calc(100vw - 40px), (max-width: 1023px) 50vw, 34vw"
+              ? "(max-width: 767px) calc(100vw - 40px), 85vw"
+              : "(max-width: 767px) calc(100vw - 40px), 50vw"
           }
           className={styles.feature__image}
         />
       </div>
 
       <figcaption className={styles.feature__caption}>
-        <span>{feature.label}</span>
+        <h3>{feature.label}</h3>
         <p>{feature.caption}</p>
       </figcaption>
     </figure>

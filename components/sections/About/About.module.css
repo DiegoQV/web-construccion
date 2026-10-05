@@ -4,7 +4,7 @@
 .photo img { object-fit: cover; object-position: center; }
 .content h2 { margin-bottom: 28px; font-weight: 600; }
 .content > p { color: var(--color-text-secondary); font-size: 16px; line-height: 1.8; }
-.content .name { color: var(--color-text-primary); font-family: var(--font-display); font-size: 32px; margin-bottom: 20px; }
+.content .name { color: var(--color-text-primary); font-family: var(--font-display); font-size: 32px; font-weight: 500; margin-bottom: 20px; }
 .name span { display: block; font-family: var(--font-body); font-size: 14px; color: var(--color-text-secondary); }
 .services { display: grid; gap: 12px; margin: 24px 0 32px; font-size: 15px; }
 .services li { display: flex; align-items: center; gap: 12px; }

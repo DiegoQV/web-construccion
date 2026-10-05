@@ -8,30 +8,30 @@ export interface MaterialFeature {
 
 export const materialsContent = {
   eyebrow: "Calidad desde la base",
-  title: "Construimos con procesos, no con improvisación.",
+  title: "La calidad se construye. Y se ve en los detalles.",
   introduction:
-    "Materiales adecuados, revisión directa y precisión en cada etapa de obra.",
+    "Del primer muro al último acabado, el cuidado está en cómo se ejecuta cada parte de tu vivienda.",
   features: [
+    {
+      id: "acabados",
+      image: "/images/materials/acabados-interiores.png",
+      alt: "Escalera revestida y piso interior durante la colocación de acabados",
+      label: "Precisión en los acabados",
+      caption: "El cuidado se aprecia en las juntas, los encuentros y la continuidad de cada superficie.",
+    },
+    {
+      id: "estructura",
+      image: "/images/gallery/casa-estructura.png",
+      alt: "Vivienda residencial con estructura y cerramientos en proceso de construcción",
+      label: "Estructura",
+      caption: "Revisamos la ejecución de cada etapa antes de avanzar hacia los siguientes trabajos.",
+    },
     {
       id: "supervision-directa",
       image: "/images/materials/supervision-fachada.png",
       alt: "Maestro trabajando sobre andamios durante la ejecución de una fachada residencial",
       label: "Supervisión directa",
-      caption: "La obra se acompaña de principio a fin.",
-    },
-    {
-      id: "acabados",
-      image: "/images/materials/acabados-interiores.png",
-      alt: "Escalera revestida y piso interior durante la colocación de acabados",
-      label: "Acabados",
-      caption: "La precisión se reconoce en cada encuentro.",
-    },
-    {
-      id: "estructura",
-      image: "/images/materials/estructura-residencial.png",
-      alt: "Vivienda residencial con estructura y cerramientos en proceso de construcción",
-      label: "Estructura",
-      caption: "Cada etapa se revisa antes de avanzar.",
+      caption: "Dilber acompaña la ejecución, revisa el avance y conversa contigo sobre las decisiones de la obra.",
     },
   ] satisfies MaterialFeature[],
 } as const;

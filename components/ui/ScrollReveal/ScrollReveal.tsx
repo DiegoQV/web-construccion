@@ -6,7 +6,7 @@ import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { cn } from "@/lib/utils";
 import styles from "./ScrollReveal.module.css";
 
-type RevealVariant = "fadeInUp" | "fadeIn";
+type RevealVariant = "fadeInUp" | "fadeIn" | "imageUp" | "trace";
 
 interface ScrollRevealProps {
   children: React.ReactNode;
@@ -48,13 +48,14 @@ export function ScrollReveal({
   return (
     <Tag
       ref={ref}
+      data-revealed={isVisible || undefined}
       className={cn(
         styles.reveal,
         styles[`reveal--${variant}`],
         isVisible && styles["reveal--visible"],
         className
       )}
-      style={delay ? { animationDelay: `${Math.min(delay, 240)}ms` } : undefined}
+      style={delay ? { animationDelay: `${Math.min(delay, 320)}ms` } : undefined}
     >
       {children}
     </Tag>

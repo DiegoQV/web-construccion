@@ -19,3 +19,15 @@
 .item > p { padding: 0 32px 24px 0; color: var(--color-text-secondary); font-size: 15px; line-height: 1.8; }
 @media (max-width: 1023px) { .inner { padding: 72px 40px; gap: 40px; } }
 @media (max-width: 767px) { .inner { grid-template-columns: 1fr; padding: 56px 20px; gap: 32px; } .inner h2 { font-size: 36px; } }
+
+.item[open] > p { animation: answerReveal 350ms ease-out; }
+@keyframes answerReveal { from { opacity: .3; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+@supports (interpolate-size: allow-keywords) {
+  .item { interpolate-size: allow-keywords; }
+  .item::details-content { height: 0; overflow: clip; transition: height 350ms ease, content-visibility 350ms allow-discrete; }
+  .item[open]::details-content { height: auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .item[open] > p { animation: none; }
+  .item summary span, .item::details-content { transition: none; }
+}

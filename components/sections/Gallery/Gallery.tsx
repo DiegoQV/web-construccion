@@ -10,6 +10,7 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { ProjectCard } from "./ProjectCard";
 import { ProjectDialog } from "./ProjectDialog";
+import { ProjectAccordion } from "./ProjectAccordion";
 import type { Project } from "@/types/project";
 import styles from "./Gallery.module.css";
 
@@ -23,6 +24,10 @@ export function Gallery() {
   const [activeProject, setActiveProject] = useState(0);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const prefersReducedMotion = useReducedMotion();
+  const selectedIndex = orderedProjects.findIndex(project => project.id === selectedProject?.id);
+  const navigateSelectedProject = (direction: -1 | 1) => {
+    setSelectedProject(orderedProjects[(selectedIndex + direction + orderedProjects.length) % orderedProjects.length]);
+  };
 
   const updateActiveProject = () => {
     const track = trackRef.current;
@@ -84,6 +89,15 @@ export function Gallery() {
             </p>
           </ScrollReveal>
         </header>
+
+        <div className={styles.gallery__desktop}>
+          <ScrollReveal variant="fadeIn" threshold={0.08}>
+            <ProjectAccordion projects={orderedProjects.slice(0, 4)} offset={0} onOpen={setSelectedProject} />
+          </ScrollReveal>
+          <ScrollReveal variant="fadeIn" threshold={0.08}>
+            <ProjectAccordion projects={orderedProjects.slice(4, 8)} offset={4} onOpen={setSelectedProject} />
+          </ScrollReveal>
+        </div>
 
         <div className={styles.gallery__mobile_hint}>
           <span aria-hidden="true">← Desliza para explorar →</span>
@@ -171,7 +185,7 @@ export function Gallery() {
           </Button>
         </footer>
       </div>
-      <ProjectDialog project={selectedProject} onClose={() => setSelectedProject(null)} />
+      <ProjectDialog project={selectedProject} onClose={() => setSelectedProject(null)} onNavigate={navigateSelectedProject} index={selectedIndex} total={orderedProjects.length} />
     </section>
   );
 }
