@@ -30,6 +30,7 @@ export function Process() {
               fill
               sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1023px) calc(100vw - 80px), 560px"
             />
+            <figcaption className={styles.process__photoLabel}>En obra <span aria-hidden="true">·</span> Chachapoyas</figcaption>
           </ScrollReveal>
           <ScrollReveal
             variant="fadeIn"
